@@ -5,7 +5,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import './fonts/HelveticaNeue.ttc';
+import './fonts/HelveticaNeue-01.ttf';
+import './fonts/HelveticaNeue-CondensedBold-05.ttf';
+
 import './App.css';
 
 import Home from './pages/Home';

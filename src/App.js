@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 
+import './fonts/HelveticaNeue.ttc';
 import './App.css';
 
 import Home from './pages/Home';
@@ -22,7 +23,7 @@ function App() {
         <Route path="/experience" element={<Experience />}/>
         <Route path="/education" element={<Education />}/>
       </Routes>
-  </Router>
+    </Router>
   );
 }
 

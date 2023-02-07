@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useState, useEffect}  from 'react';
 
 import InputGroup from '../inputgroup';
 import ImageUploader from '../imageuploader';
@@ -26,6 +26,24 @@ const PersonalForm = ({values, setValues, navigation}) =>{
         return {...prev, "image": image}
       });
     }
+
+    const [empty, setEmpty] = useState(true);
+    function isEmpty(obj) { 
+        for (const key in obj) { 
+          if (obj.hasOwnProperty(key)&& obj[key]!=="") { 
+            return false; 
+          } 
+        } 
+        return true; 
+      } 
+    useEffect(()=>{
+        console.log(values);
+        if(isEmpty(values)){
+            setEmpty(true)
+        }else{
+            setEmpty(false);
+        }
+    }, [values]);
     //save to local storage 
     //on load -- check local storage 
 
@@ -42,6 +60,7 @@ const PersonalForm = ({values, setValues, navigation}) =>{
           setValues={setValues}
           desc="მინიმუმ 2 ასო, ქართული ასოები"
           name={true}
+          doValidation={!empty}
           />
         <InputGroup 
           values={values}
@@ -51,6 +70,7 @@ const PersonalForm = ({values, setValues, navigation}) =>{
           placeholderText="მუმლაძე"
           desc="მინიმუმ 2 ასო, ქართული ასოები"
           name={true}
+          doValidation={!empty}
           />
         </div>
           <ImageUploader setImage={setImage}/>
@@ -74,6 +94,7 @@ const PersonalForm = ({values, setValues, navigation}) =>{
           placeholderText="anzorr666@redberry.ge"
           desc="უნდა მთავრდებოდეს @redberry.ge-ით"
           size="large"
+          doValidation={!empty}
           />
           <InputGroup 
              setValues={setValues}
@@ -83,6 +104,8 @@ const PersonalForm = ({values, setValues, navigation}) =>{
           placeholderText="+995 551 12 34 56"
           desc="უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს"
           size="large"
+          doValidation={!empty}
+
           />
         <button
          className='submitBtn'

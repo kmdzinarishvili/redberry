@@ -15,7 +15,6 @@ const PersonalInfo = () =>{
         <div className={`page ${styles.container}`}>
             <div className='grey'>
                 <PersonalForm values={values} setValues={setValues}/>
-
             </div>
             <Resume values={values}/>
             <div className='resume'></div>

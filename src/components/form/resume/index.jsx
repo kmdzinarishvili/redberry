@@ -1,8 +1,11 @@
 import React from "react";
 
-const Resume = () =>{
+const Resume = ({values}) =>{
+
+    
     return(<div>
-        <p>Resume</p>
+        <h1>RESUME</h1>
+       <p>{JSON.stringify(values)}</p>
     </div>);
 }
 

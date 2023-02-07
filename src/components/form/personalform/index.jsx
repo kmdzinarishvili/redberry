@@ -1,4 +1,4 @@
-import React,{useState}  from 'react';
+import React  from 'react';
 
 import InputGroup from '../inputgroup';
 import ImageUploader from '../imageuploader';
@@ -6,8 +6,8 @@ import Header from '../header';
 import { useNavigate } from 'react-router-dom';
 
 
-const PersonalForm = ({navigation}) =>{
-    const [values, setValues] = useState({});
+const PersonalForm = ({values, setValues, navigation}) =>{
+
     const navigate = useNavigate();
     
     const handleSubmit = () =>{
@@ -16,6 +16,19 @@ const PersonalForm = ({navigation}) =>{
     const goBack = () =>{
       navigate(-1)
     }
+    const handleAboutMeChange = (event) =>{
+      setValues((prev)=> {
+        return {...prev, "aboutMe": event.target.value}
+      });
+    }
+    const setImage = (image)=>{
+      setValues((prev)=> {
+        return {...prev, "image": image}
+      });
+    }
+    //save to local storage 
+    //on load -- check local storage 
+
     return (
       <form onSubmit={handleSubmit} className="formInner">
         <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ"
@@ -26,19 +39,21 @@ const PersonalForm = ({navigation}) =>{
           id ={"firstName"}
           labelText="სახელი"
           placeholderText="ანზორ"
+          setValues={setValues}
           desc="მინიმუმ 2 ასო, ქართული ასოები"
           name={true}
           />
         <InputGroup 
           values={values}
-          id ={"firstName"}
+          setValues={setValues}
+          id ={"lastName"}
           labelText="გვარი"
           placeholderText="მუმლაძე"
           desc="მინიმუმ 2 ასო, ქართული ასოები"
           name={true}
           />
         </div>
-          <ImageUploader/>
+          <ImageUploader setImage={setImage}/>
       <div className='inpGroup'>
      <label className="label">
       ჩემ შესახებ (არასავალდებულო)
@@ -47,9 +62,12 @@ const PersonalForm = ({navigation}) =>{
         className='aboutMe'
         rows="5" 
         placeholder='ზოგადი ინფო შენ შესახებ'
+        value={values["aboutMe"]|| ''}
+        onChange={handleAboutMeChange}
         />
         </div>
         <InputGroup 
+           setValues={setValues}
           values={values}
           id ={"email"}
           labelText="ელ.ფოსტა"
@@ -58,8 +76,9 @@ const PersonalForm = ({navigation}) =>{
           size="large"
           />
           <InputGroup 
+             setValues={setValues}
           values={values}
-          id ={"email"}
+          id ={"phone"}
           labelText="მობილურის ნომერი"
           placeholderText="+995 551 12 34 56"
           desc="უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს"
@@ -70,7 +89,6 @@ const PersonalForm = ({navigation}) =>{
          type="submit">
           ᲨᲔᲛᲓᲔᲒᲘ
         </button>
-      
       </form>
     );
   };

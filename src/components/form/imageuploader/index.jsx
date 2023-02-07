@@ -1,13 +1,16 @@
 
 import React from "react";
 
-const ImageUploader = () => {
+const ImageUploader = ({setImage}) => {
     const hiddenFileInput = React.useRef(null);
     const handleClick = event => {
+      event.preventDefault();
       hiddenFileInput.current.click();
     };
     const handleChange = event => {
       const fileUploaded = event.target.files[0];
+      console.log(event.target.files[0]);
+      setImage(fileUploaded);
     };
     return (
   <div className='inpGroup'

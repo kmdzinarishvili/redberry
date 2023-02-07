@@ -1,19 +1,23 @@
 import React,{useState}  from 'react';
 
 import PersonalForm from '../../components/form/personalform';
+import Resume from "../../components/form/resume";
 
 import '../../Form.css';
+import styles from "./PersonalInfo.module.css";
 
 
 
 const PersonalInfo = () =>{
-    const [name, setName] = useState("");
+    const [values, setValues] = useState({});
 
     return (
-        <div className='page'>
+        <div className={`page ${styles.container}`}>
             <div className='grey'>
-                <PersonalForm/>
+                <PersonalForm values={values} setValues={setValues}/>
+
             </div>
+            <Resume values={values}/>
             <div className='resume'></div>
         </div>
  

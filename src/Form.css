@@ -1,0 +1,97 @@
+.grey{
+    background-color: #F9F9F9;
+    width: 1098px;
+}
+
+.formInner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 126px ;
+}
+.inpGroup{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 24px;
+}
+
+.label{
+    margin-top:8px;
+    color:#000;
+    font-family:HelveticaNeue;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+}
+.input{
+    font-family: HelveticaNeue;
+    margin-top: 8px;
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 4px;
+    width: 371px;
+    height: 48px;
+    padding:13px 16px 14px; 
+}
+.desc{
+    margin-top: 8px;
+    font-family: HelveticaNeue;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: #2E2E2E;
+}
+.nameGroup{
+    display: flex;
+    flex-direction: row;
+}
+.aboutMe{
+    width: 798px;
+    height:103px;
+    vertical-align: top;
+    margin: 8px 0px;
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 4px;
+    padding:13px 16px 14px; 
+    resize: none;
+}
+.uploadBtn{
+    width:107px;
+    height:27px;
+              margin-left:19px; 
+              margin-top:10px;
+              display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items:center;
+            padding: 10px 10px 12px;
+            gap:10px;
+            background: #0E80BF;
+            border-radius: 4px;
+            border: none;
+            color: #FFFFFF;
+            font-family: 'HelveticaNeue';
+            font-weight:400;
+            font-style:normal
+}
+.submitBtn{
+    width: 151px;
+    height: 48px;
+    
+    background: #6B40E3;
+    border-radius: 4px;
+    border: none;
+
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFF;
+    margin-left: 647px;
+    margin-top: 152px ;
+}

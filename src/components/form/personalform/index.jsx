@@ -2,15 +2,24 @@ import React,{useState}  from 'react';
 
 import InputGroup from '../inputgroup';
 import ImageUploader from '../imageuploader';
+import Header from '../header';
+import { useNavigate } from 'react-router-dom';
 
 
-const PersonalForm = () =>{
+const PersonalForm = ({navigation}) =>{
     const [values, setValues] = useState({});
+    const navigate = useNavigate();
+    
     const handleSubmit = () =>{
         console.log("SUBMITTED");
+    } 
+    const goBack = () =>{
+      navigate(-1)
     }
     return (
       <form onSubmit={handleSubmit} className="formInner">
+        <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ"
+                buttonFunct={goBack}/>
         <div className="nameGroup">
           <InputGroup 
           values={values}

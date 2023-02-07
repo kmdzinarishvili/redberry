@@ -1,0 +1,34 @@
+.backBtn{
+    background-color: #FFF;
+    width:40px;
+    height:40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:45px;
+    left:48px
+}
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 47px;
+    padding-left: 24px;
+}
+h2{
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+.underline{
+    width: 798px;
+    height: 1px;
+    background-color: #1A1A1A;
+    margin-top: 12px;
+
+}

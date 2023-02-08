@@ -4,8 +4,7 @@ import React from 'react';
 import '../../../Form.css';
 
 
-const InputGroup = ({values, id, labelText, placeholderText, desc, size="small", setValues, doValidation}) =>{
-
+const InputGroup = ({values, id, labelText, placeholderText, desc, size="small", setValues, doValidation, isValid}) =>{
     const handleChange = (event)=>{
       setValues((prev)=> {
         return {...prev, [id]: event.target.value}
@@ -15,7 +14,7 @@ const InputGroup = ({values, id, labelText, placeholderText, desc, size="small",
         <label className="label" htmlFor={id}>
           {labelText}
         </label>
-        {doValidation?"doingValidation": "not doing validation"}
+        {doValidation&&isValid?"isValid": "not valid"}
         <input
           className="input"
           id={id}

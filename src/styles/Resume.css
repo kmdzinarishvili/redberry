@@ -1,0 +1,69 @@
+.resumeContainer {
+    padding: 68px 80px;
+    width: 822px;
+    position: relative;
+}
+.name {
+    font-family: 'Helv';
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #f93b1d;
+}
+.icon {
+    width: 16.67px;
+    height: 16.67px;
+    margin-right: 11.67px;
+}
+
+.vert {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.personalText {
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.email {
+    margin-top: 20.67px;
+}
+.phone {
+    margin-top: 10px;
+}
+
+.profile {
+    width: 246px;
+    height: 246px;
+    position: absolute;
+    top: 48px;
+    right: 75px;
+}
+
+.aboutMeTitle {
+    margin-top: 35.55px;
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #f93b1d;
+}
+.aboutMeText {
+    width: 432px;
+    margin-top: 15px;
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: lowercase;
+    color: #000000;
+}

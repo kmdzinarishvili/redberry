@@ -127,71 +127,75 @@ const PersonalForm = ({ values, setValues }) => {
     }, [imageValid, firstNameValid, lastNameValid, emailValid, phoneValid]);
 
     return (
-        <form onSubmit={handleSubmit} className="formInner" noValidate>
-            <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ" buttonFunct={goBack} />
-            <div className="nameGroup">
+        <div className="grey">
+            <form onSubmit={handleSubmit} className="formInner" noValidate>
+                <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ" buttonFunct={goBack} />
+                <div className="nameGroup">
+                    <InputGroup
+                        values={values}
+                        id={'firstName'}
+                        labelText="სახელი"
+                        placeholderText="ანზორ"
+                        setValues={setValues}
+                        desc="მინიმუმ 2 ასო, ქართული ასოები"
+                        name={true}
+                        doValidation={!empty}
+                        isValid={firstNameValid}
+                    />
+                    <InputGroup
+                        values={values}
+                        setValues={setValues}
+                        id={'lastName'}
+                        labelText="გვარი"
+                        placeholderText="მუმლაძე"
+                        desc="მინიმუმ 2 ასო, ქართული ასოები"
+                        name={true}
+                        doValidation={!empty}
+                        isValid={lastNameValid}
+                    />
+                </div>
+                <ImageUploader image={values['image']} setImage={setImage} />
+                <div className="inpGroup">
+                    <label className="label">
+                        ჩემ შესახებ (არასავალდებულო)
+                    </label>
+                    <textarea
+                        className={`aboutMe ${!empty && 'greenBorder'}`}
+                        rows="5"
+                        placeholder="ზოგადი ინფო შენ შესახებ"
+                        value={values['aboutMe'] || ''}
+                        onChange={handleAboutMeChange}
+                    />
+                </div>
                 <InputGroup
-                    values={values}
-                    id={'firstName'}
-                    labelText="სახელი"
-                    placeholderText="ანზორ"
                     setValues={setValues}
-                    desc="მინიმუმ 2 ასო, ქართული ასოები"
-                    name={true}
+                    values={values}
+                    id={'email'}
+                    labelText="ელ.ფოსტა"
+                    placeholderText="anzorr666@redberry.ge"
+                    desc="უნდა მთავრდებოდეს @redberry.ge-ით"
+                    size="large"
                     doValidation={!empty}
-                    isValid={firstNameValid}
+                    isValid={emailValid}
                 />
+                {/* add spaces later */}
                 <InputGroup
-                    values={values}
                     setValues={setValues}
-                    id={'lastName'}
-                    labelText="გვარი"
-                    placeholderText="მუმლაძე"
-                    desc="მინიმუმ 2 ასო, ქართული ასოები"
-                    name={true}
+                    values={values}
+                    id={'phone'}
+                    labelText="მობილურის ნომერი"
+                    placeholderText="+995 551 12 34 56"
+                    desc="უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს"
+                    size="large"
                     doValidation={!empty}
-                    isValid={lastNameValid}
+                    isValid={phoneValid}
                 />
-            </div>
-            <ImageUploader setImage={setImage} />
-            <div className="inpGroup">
-                <label className="label">ჩემ შესახებ (არასავალდებულო)</label>
-                <textarea
-                    className={`aboutMe ${!empty && 'greenBorder'}`}
-                    rows="5"
-                    placeholder="ზოგადი ინფო შენ შესახებ"
-                    value={values['aboutMe'] || ''}
-                    onChange={handleAboutMeChange}
-                />
-            </div>
-            <InputGroup
-                setValues={setValues}
-                values={values}
-                id={'email'}
-                labelText="ელ.ფოსტა"
-                placeholderText="anzorr666@redberry.ge"
-                desc="უნდა მთავრდებოდეს @redberry.ge-ით"
-                size="large"
-                doValidation={!empty}
-                isValid={emailValid}
-            />
-            {/* add spaces later */}
-            <InputGroup
-                setValues={setValues}
-                values={values}
-                id={'phone'}
-                labelText="მობილურის ნომერი"
-                placeholderText="+995 551 12 34 56"
-                desc="უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს"
-                size="large"
-                doValidation={!empty}
-                isValid={phoneValid}
-            />
-            {allValid ? 'all valid' : 'not valid'}
-            <button className="submitBtn" type="submit">
-                ᲨᲔᲛᲓᲔᲒᲘ
-            </button>
-        </form>
+                {allValid ? 'all valid' : 'not valid'}
+                <button className="submitBtn" type="submit">
+                    ᲨᲔᲛᲓᲔᲒᲘ
+                </button>
+            </form>
+        </div>
     );
 };
 

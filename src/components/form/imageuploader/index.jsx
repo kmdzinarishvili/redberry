@@ -7,7 +7,7 @@ const ImageUploader = ({ setImage }) => {
         hiddenFileInput.current.click();
     };
     const handleChange = (event) => {
-        const fileUploaded = event.target.files[0];
+        const fileUploaded = URL.createObjectURL(event.target.files[0]);
         console.log(event.target.files[0]);
         setImage(fileUploaded);
     };
@@ -28,6 +28,7 @@ const ImageUploader = ({ setImage }) => {
             </button>
             <input
                 type="file"
+                accept="image/png, image/svg, image/jpeg"
                 ref={hiddenFileInput}
                 onChange={handleChange}
                 style={{ display: 'none' }}

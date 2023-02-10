@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import PersonalForm from '../../components/form/personalform';
-import Resume from '../../components/form/resume';
+import Resume from '../../components/resume';
 
 import '../../styles/Form.css';
 import styles from './PersonalInfo.module.css';
@@ -20,9 +20,7 @@ const PersonalInfo = () => {
 
     return (
         <div className={`page ${styles.container}`}>
-            <div className="grey">
-                <PersonalForm values={values} setValues={setValues} />
-            </div>
+            <PersonalForm values={values} setValues={setValues} />
             <Resume values={values} />
             <div className="resume"></div>
         </div>

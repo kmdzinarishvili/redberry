@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: flex-start;
     margin-left: 126px;
+    margin-right: 126px;
 }
 .inpGroup {
     display: flex;
@@ -107,7 +108,9 @@
 }
 
 .inpCont {
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .check {
     width: 16.5px;
@@ -120,5 +123,5 @@
     width: 21px;
     height: 18.75px;
     margin-left: 13.5px;
-    margin-bottom: -4px;
+    margin-bottom: -8px;
 }

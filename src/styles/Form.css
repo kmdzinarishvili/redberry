@@ -96,6 +96,29 @@
     margin-top: 152px;
 }
 
-.correctInp {
+.greenBorder {
     border: 1px solid #98e37e;
+}
+.redBorder {
+    border: 1px solid #e52f2f;
+}
+.redText {
+    color: #e52f2f;
+}
+
+.inpCont {
+    position: relative;
+}
+.check {
+    width: 16.5px;
+    height: 16.5px;
+    position: absolute;
+    right: 14.75px;
+    bottom: 15.75px;
+}
+.warn {
+    width: 21px;
+    height: 18.75px;
+    margin-left: 13.5px;
+    margin-bottom: -4px;
 }

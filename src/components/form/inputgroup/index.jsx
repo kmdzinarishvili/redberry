@@ -1,6 +1,8 @@
 import React from 'react';
 
-import '../../../Form.css';
+import check from '../../../imgs/form/check.png';
+import warning from '../../../imgs/form/warning.png';
+import '../../../styles/Form.css';
 
 const InputGroup = ({
     values,
@@ -20,19 +22,36 @@ const InputGroup = ({
     };
     return (
         <div className="inpGroup">
-            <label className="label" htmlFor={id}>
+            <label
+                className={`label ${doValidation && !isValid && 'redText'}`}
+                htmlFor={id}
+            >
                 {labelText}
             </label>
-            {doValidation && isValid ? 'isValid' : 'not valid'}
-            <input
-                className="input"
-                id={id}
-                placeholder={placeholderText}
-                type="text"
-                value={values[id] || ''}
-                onChange={handleChange}
-                style={{ width: size === 'small' ? '371px' : '798px' }}
-            />
+            <div className="inpCont">
+                <input
+                    className={`input ${
+                        !doValidation
+                            ? ''
+                            : isValid
+                            ? 'greenBorder'
+                            : 'redBorder'
+                    }`}
+                    id={id}
+                    placeholder={placeholderText}
+                    type="text"
+                    value={values[id] || ''}
+                    onChange={handleChange}
+                    style={{ width: size === 'small' ? '371px' : '798px' }}
+                />
+                {doValidation &&
+                    (isValid ? (
+                        <img className="check" src={check} alt="check" />
+                    ) : (
+                        <img className="warn" src={warning} alt="warning" />
+                    ))}
+            </div>
+
             <p className="desc">{desc}</p>
         </div>
     );

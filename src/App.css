@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+input:focus,
+textarea:focus {
+    outline: none;
+}
 .page {
     width: 1920px;
     height: 1080px;

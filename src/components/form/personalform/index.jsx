@@ -73,8 +73,6 @@ const PersonalForm = ({ values, setValues }) => {
             setImageValid(false);
         }
     }, [values['image']]);
-    //save to local storage
-    //on load -- check local storage
     useEffect(() => {
         if (
             values['firstName'] &&
@@ -159,7 +157,7 @@ const PersonalForm = ({ values, setValues }) => {
             <div className="inpGroup">
                 <label className="label">ჩემ შესახებ (არასავალდებულო)</label>
                 <textarea
-                    className="aboutMe"
+                    className={`aboutMe ${!empty && 'greenBorder'}`}
                     rows="5"
                     placeholder="ზოგადი ინფო შენ შესახებ"
                     value={values['aboutMe'] || ''}

@@ -41,7 +41,6 @@ const PersonalForm = ({ values, setValues }) => {
         return true;
     }
     useEffect(() => {
-        console.log(values);
         if (isEmpty(values)) {
             setEmpty(true);
         } else {

@@ -1,33 +1,30 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.page{
-  width:1920px;
-  height:1080px;
-  display:flex;
+.page {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
 }
 @font-face {
-  font-family: "HelveticaNeue";
-  src: url("./fonts/HelveticaNeue-01.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HelveticaNeue";
-  src: url("./fonts/HelveticaNeue-Medium-11.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 500;
-
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue-01.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "HelveticaNeue";
-  src: url("./fonts/HelveticaNeue-Light-08.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 300;
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue-Medium-11.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 500;
+}
 
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue-Light-08.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
 }

@@ -1,27 +1,27 @@
-.home{
+.home {
     background-image: url(../../imgs//home/home_bg.png);
     display: flex;
     flex-direction: column;
 }
-.stamp{
+.stamp {
     position: absolute;
     margin: 473px 545px 306px 1076px;
 }
-.button{
+.button {
     width: 464px;
     height: 60px;
-    background: #1A1A1A;
-    margin-top:424px;
-    margin:auto;
+    background: #1a1a1a;
+    margin-top: 424px;
+    margin: auto;
     border-radius: 8px;
-    border:none;
+    border: none;
     align-self: center;
     z-index: 100;
 
-    font-family:'Helvetica Neue';
+    font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: #ffffff;
 }

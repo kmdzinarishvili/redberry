@@ -1,8 +1,8 @@
 {
-  "short_name": "Redberry",
-  "name": "Keti's Redberry App",
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "short_name": "Redberry",
+    "name": "Keti's Redberry App",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
 }

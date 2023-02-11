@@ -45,7 +45,7 @@
     line-height: 21px;
     color: #2e2e2e;
 }
-.nameGroup {
+.horizontalGroup {
     display: flex;
     flex-direction: row;
 }

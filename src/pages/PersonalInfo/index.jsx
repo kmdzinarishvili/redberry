@@ -4,7 +4,6 @@ import PersonalForm from '../../components/form/personalform';
 import Resume from '../../components/resume';
 
 import '../../styles/Form.css';
-import styles from './PersonalInfo.module.css';
 
 const PersonalInfo = () => {
     const [values, setValues] = useState(() => {
@@ -19,7 +18,7 @@ const PersonalInfo = () => {
     }, [values]);
 
     return (
-        <div className={`page ${styles.container}`}>
+        <div className={`page horizontalGroup`}>
             <PersonalForm values={values} setValues={setValues} />
             <Resume values={values} />
             <div className="resume"></div>

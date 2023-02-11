@@ -8,14 +8,11 @@ import { useNavigate } from 'react-router-dom';
 const PersonalForm = ({ values, setValues }) => {
     const navigate = useNavigate();
 
-    const [submitted, setSubmitted] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(true);
         if (allValid) {
             navigate('/experience');
         }
-        console.log('SUBMITTED');
     };
     const goBack = () => {
         navigate(-1);
@@ -130,7 +127,7 @@ const PersonalForm = ({ values, setValues }) => {
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
                 <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ" buttonFunct={goBack} />
-                <div className="nameGroup">
+                <div className="horizontalGroup">
                     <InputGroup
                         values={values}
                         id={'firstName'}

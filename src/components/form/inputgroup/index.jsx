@@ -14,6 +14,7 @@ const InputGroup = ({
     setValues,
     doValidation,
     isValid,
+    type = 'text',
 }) => {
     const handleChange = (event) => {
         setValues((prev) => {
@@ -39,7 +40,7 @@ const InputGroup = ({
                     }`}
                     id={id}
                     placeholder={placeholderText}
-                    type="text"
+                    type={type}
                     value={values[id] || ''}
                     onChange={handleChange}
                     style={{ width: size === 'small' ? '371px' : '798px' }}
@@ -52,7 +53,7 @@ const InputGroup = ({
                     ))}
             </div>
 
-            <p className="desc">{desc}</p>
+            {desc && <p className="desc">{desc}</p>}
         </div>
     );
 };

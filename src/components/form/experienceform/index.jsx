@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import InputGroup from '../inputgroup';
 import Header from '../header';
 import { useNavigate } from 'react-router-dom';
+import SingleExperience from '../singleexperience';
 
 const ExperienceForm = ({ values, setValues }) => {
     const navigate = useNavigate();
@@ -79,57 +80,39 @@ const ExperienceForm = ({ values, setValues }) => {
         );
     }, [positionValid, companyValid, startDateValid, endDateValid]);
 
+    const [numExperiences, setNumExperiences] = useState(1);
+    const [experienceList, setExperienceList] = useState([]);
+
+    useEffect(() => {
+        let arr = [];
+        for (let i = 0; i < numExperiences; i++) {
+            arr.push(
+                <SingleExperience
+                    key={i}
+                    doValidation={!empty}
+                    values={values}
+                    setValues={setValues}
+                    setAllValid={setAllValid}
+                />
+            );
+        }
+        console.log(arr);
+        setExperienceList(arr);
+    }, [numExperiences]);
+    const addExperience = (e) => {
+        e.preventDefault();
+        setNumExperiences((prev) => (prev += 1));
+    };
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
                 <Header text="ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ" buttonFunct={goBack} />
-                <InputGroup
-                    setValues={setValues}
-                    values={values}
-                    id={'position'}
-                    labelText="თანამდებობა"
-                    placeholderText="თანამდებობა"
-                    desc="მინიმუმ 2 სიმბოლო"
-                    size="large"
-                    doValidation={!empty}
-                    isValid={positionValid}
+                {experienceList.map((item, index) => item)}
+                <button
+                    type="button"
+                    style={{ width: 100, height: 100 }}
+                    onClick={addExperience}
                 />
-                <InputGroup
-                    setValues={setValues}
-                    values={values}
-                    id={'company'}
-                    labelText="დამსაქმებელი"
-                    placeholderText="დამსაქმებელი"
-                    desc="მინიმუმ 2 სიმბოლო"
-                    size="large"
-                    doValidation={!empty}
-                    isValid={companyValid}
-                />
-                <div className="horizontalGroup">
-                    <InputGroup
-                        setValues={setValues}
-                        values={values}
-                        id={'startDate'}
-                        labelText="დაწყების რიცხვი"
-                        placeholderText="დაწყების რიცხვი"
-                        size="small"
-                        doValidation={!empty}
-                        isValid={startDateValid}
-                        type="date"
-                    />
-                    <InputGroup
-                        setValues={setValues}
-                        values={values}
-                        id={'endDate'}
-                        labelText="დამთავრების რიცხვი"
-                        placeholderText="დამთავრების რიცხვი"
-                        size="small"
-                        doValidation={!empty}
-                        isValid={endDateValid}
-                        type="date"
-                    />
-                </div>
-
                 {allValid ? 'all valid' : 'not valid'}
                 <button className="submitBtn" type="submit">
                     ᲨᲔᲛᲓᲔᲒᲘ

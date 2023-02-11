@@ -8,21 +8,31 @@ const ExperienceForm = ({ values, setValues }) => {
     const navigate = useNavigate();
 
     const [experiences, setExperiences] = useState(() => {
-        console.log('in experiences', values);
         return values || [];
     });
-
-    useEffect(() => {
-        console.log('experiences in use effect', experiences);
-    }, [experiences]);
+    function isEmpty(obj) {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key) && obj[key] !== '') {
+                return false;
+            }
+        }
+        return true;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let eachSectionValid = true;
+        let numSections = 0;
         for (const bool of Object.values(allValid)) {
             eachSectionValid = eachSectionValid && bool;
         }
-        if (eachSectionValid) {
+        for (const ex of experiences) {
+            if (!isEmpty(ex)) {
+                numSections += 1;
+            }
+        }
+
+        if (numSections > 0 && eachSectionValid) {
             navigate('/education');
         }
     };

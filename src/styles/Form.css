@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: row;
 }
-.aboutMe {
+.textArea {
     width: 798px;
     height: 103px;
     vertical-align: top;

@@ -157,7 +157,7 @@ const PersonalForm = ({ values, setValues }) => {
                         ჩემ შესახებ (არასავალდებულო)
                     </label>
                     <textarea
-                        className={`aboutMe ${!empty && 'greenBorder'}`}
+                        className={`textArea ${!empty && 'greenBorder'}`}
                         rows="5"
                         placeholder="ზოგადი ინფო შენ შესახებ"
                         value={values['aboutMe'] || ''}

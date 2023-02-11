@@ -19,6 +19,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
     const [companyValid, setCompanyValid] = useState(false);
     const [startDateValid, setStartDateValid] = useState(false);
     const [endDateValid, setEndDateValid] = useState(false);
+    const [descriptionValid, setDescriptionValid] = useState(false);
     const [empty, setEmpty] = useState(true);
     function isEmpty(obj) {
         for (const key in obj) {
@@ -67,6 +68,13 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
             setEndDateValid(false);
         }
     }, [curr['endDate']]);
+    useEffect(() => {
+        if (curr && curr['description'] && curr['description'].length >= 2) {
+            setDescriptionValid(true);
+        } else {
+            setDescriptionValid(false);
+        }
+    }, [curr['description']]);
 
     useEffect(() => {
         setAllValid((prev) => {
@@ -76,12 +84,25 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                     (positionValid &&
                         companyValid &&
                         startDateValid &&
-                        endDateValid) ||
+                        endDateValid &&
+                        descriptionValid) ||
                     empty,
             };
         });
-    }, [positionValid, companyValid, startDateValid, endDateValid, empty]);
+    }, [
+        positionValid,
+        companyValid,
+        startDateValid,
+        endDateValid,
+        descriptionValid,
+        empty,
+    ]);
 
+    const handleDescriptionChange = (event) => {
+        setCurr((prev) => {
+            return { ...prev, description: event.target.value };
+        });
+    };
     return (
         <>
             <InputGroup
@@ -130,6 +151,22 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                     isValid={endDateValid}
                     type="date"
                     doCheck={false}
+                />
+            </div>
+            <div className="inpGroup">
+                <label className="label">ჩემ შესახებ (არასავალდებულო)</label>
+                <textarea
+                    className={`textArea ${
+                        empty
+                            ? ''
+                            : descriptionValid
+                            ? 'greenBorder'
+                            : 'redBorder'
+                    }`}
+                    rows="5"
+                    placeholder="ზოგადი ინფო შენ შესახებ"
+                    value={curr['description'] || ''}
+                    onChange={handleDescriptionChange}
                 />
             </div>
         </>

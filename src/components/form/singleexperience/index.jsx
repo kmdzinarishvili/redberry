@@ -63,9 +63,16 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
     }, [values['endDate' + num]]);
 
     useEffect(() => {
-        setAllValid(
-            positionValid && companyValid && startDateValid && endDateValid
-        );
+        setAllValid((prev) => {
+            return {
+                ...prev,
+                [num]:
+                    positionValid &&
+                    companyValid &&
+                    startDateValid &&
+                    endDateValid,
+            };
+        });
     }, [positionValid, companyValid, startDateValid, endDateValid]);
 
     return (

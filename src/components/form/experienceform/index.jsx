@@ -10,7 +10,11 @@ const ExperienceForm = ({ values, setValues }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (allValid) {
+        let eachSectionValid = true;
+        for (const bool of Object.values(allValid)) {
+            eachSectionValid = eachSectionValid && bool;
+        }
+        if (eachSectionValid) {
             navigate('/education');
         }
     };
@@ -35,7 +39,7 @@ const ExperienceForm = ({ values, setValues }) => {
         }
     }, [values]);
 
-    const [allValid, setAllValid] = useState(false);
+    const [allValid, setAllValid] = useState({});
 
     useEffect(() => {
         setAllValid(true);
@@ -57,7 +61,6 @@ const ExperienceForm = ({ values, setValues }) => {
                 />
             );
         }
-        console.log(arr);
         setExperienceList(arr);
     }, [numExperiences, values, empty]);
     const addExperience = (e) => {
@@ -74,7 +77,7 @@ const ExperienceForm = ({ values, setValues }) => {
                     style={{ width: 100, height: 100 }}
                     onClick={addExperience}
                 />
-                {allValid ? 'all valid' : 'not valid'}
+                {allValid ? JSON.stringify(allValid) : 'not valid'}
                 <button className="submitBtn" type="submit">
                     ᲨᲔᲛᲓᲔᲒᲘ
                 </button>

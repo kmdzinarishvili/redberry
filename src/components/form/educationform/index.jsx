@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import Header from '../header';
 import { useNavigate } from 'react-router-dom';
-import SingleExperience from '../singleexperience';
+import SingleEducation from '../singleeducation';
 
-const ExperienceForm = ({ values, setValues }) => {
+const EducationForm = ({ values, setValues }) => {
     const navigate = useNavigate();
 
-    const [experiences, setExperiences] = useState(() => {
+    const [educations, setEducations] = useState(() => {
         return values || [];
     });
     function isEmpty(obj) {
@@ -26,14 +26,14 @@ const ExperienceForm = ({ values, setValues }) => {
         for (const bool of Object.values(allValid)) {
             eachSectionValid = eachSectionValid && bool;
         }
-        for (const ex of experiences) {
-            if (!isEmpty(ex)) {
+        for (const ed of educations) {
+            if (!isEmpty(ed)) {
                 numSections += 1;
             }
         }
 
         if (numSections > 0 && eachSectionValid) {
-            navigate('/education');
+            navigate('/resume');
         }
     };
     const goBack = () => {
@@ -46,70 +46,69 @@ const ExperienceForm = ({ values, setValues }) => {
         setAllValid(true);
     }, []);
 
-    const [numExperiences, setNumExperiences] = useState(() => {
+    const [numEducations, setNumEducations] = useState(() => {
         if (values.length > 0) {
             return values.length;
         }
         return 1;
     });
-    const [experienceList, setExperienceList] = useState([]);
+    const [educationList, setEducationList] = useState([]);
 
     useEffect(() => {
         let arr = [];
-        for (let i = 0; i < numExperiences; i++) {
+        for (let i = 0; i < numEducations; i++) {
             arr.push(
-                <SingleExperience
+                <SingleEducation
                     key={i}
                     num={i}
-                    values={experiences}
-                    setValues={setExperiences}
+                    values={educations}
+                    setValues={setEducations}
                     setAllValid={setAllValid}
                 />
             );
         }
-        setExperienceList(arr);
-    }, [numExperiences, experiences]);
+        setEducationList(arr);
+    }, [numEducations, educations]);
 
-    const addExperience = (e) => {
+    const addEducation = (e) => {
         e.preventDefault();
-        setNumExperiences((prev) => (prev += 1));
+        setNumEducations((prev) => (prev += 1));
     };
     useEffect(() => {
-        let experiencesArr = [];
-        for (let i = 0; i < numExperiences; i++) {
-            if (experiences) {
-                let currExperience = experiences[i];
-                if (currExperience) {
+        let educationsArr = [];
+        for (let i = 0; i < numEducations; i++) {
+            if (educations) {
+                let currEducation = educations[i];
+                if (currEducation) {
                     if (
-                        currExperience['position'] ||
-                        currExperience['company'] ||
-                        currExperience['startDate'] ||
-                        currExperience['endDate'] ||
-                        currExperience['description']
+                        currEducation['institution'] ||
+                        currEducation['diploma'] ||
+                        currEducation['endDate'] ||
+                        currEducation['description']
                     ) {
                         let currObj = {
-                            position: currExperience['position'] || '',
-                            company: currExperience['company'] || '',
-                            startDate: currExperience['startDate'] || '',
-                            endDate: currExperience['endDate'] || '',
-                            description: currExperience['description'],
+                            institution: currEducation['institution'] || '',
+                            diploma: currEducation['diploma'] || '',
+                            endDate: currEducation['endDate'] || '',
+                            description: currEducation['description'] || '',
                         };
-                        experiencesArr.push(currObj);
+                        educationsArr.push(currObj);
                     }
                 }
             }
         }
-        setValues(experiencesArr);
-    }, [experiences]);
+        console.log('education', educationsArr);
+        setValues(educationsArr);
+    }, [educations]);
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
-                <Header text="ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ" buttonFunct={goBack} />
-                {experienceList.map((item, index) => item)}
+                <Header text="ᲒᲐᲜᲐᲗᲚᲔᲑᲐ" buttonFunct={goBack} />
+                {educationList.map((item, index) => item)}
                 <button
                     type="button"
                     style={{ width: 100, height: 100 }}
-                    onClick={addExperience}
+                    onClick={addEducation}
                 />
                 {allValid ? JSON.stringify(allValid) : 'not valid'}
                 <button className="submitBtn" type="submit">
@@ -120,4 +119,4 @@ const ExperienceForm = ({ values, setValues }) => {
     );
 };
 
-export default ExperienceForm;
+export default EducationForm;

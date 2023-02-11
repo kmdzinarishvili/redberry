@@ -21,7 +21,6 @@ const PersonalInfo = () => {
         <div className={`page horizontalGroup`}>
             <PersonalForm values={values} setValues={setValues} />
             <Resume values={values} />
-            <div className="resume"></div>
         </div>
     );
 };

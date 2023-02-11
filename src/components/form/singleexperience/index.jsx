@@ -1,43 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import InputGroup from '../inputgroup';
 
-const SingleExperience = ({ doValidation, values, setValues, setAllValid }) => {
+const SingleExperience = ({ num, values, setValues, setAllValid }) => {
     const [positionValid, setPositionValid] = useState(false);
     const [companyValid, setCompanyValid] = useState(false);
     const [startDateValid, setStartDateValid] = useState(false);
     const [endDateValid, setEndDateValid] = useState(false);
+    const [empty, setEmpty] = useState(true);
+    function isEmpty(obj) {
+        for (const key in obj) {
+            if (
+                key === 'position' + num ||
+                key === 'company' + num ||
+                key === 'startDate' + num ||
+                key === 'endState' + num
+            ) {
+                if (obj.hasOwnProperty(key) && obj[key] !== '') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    useEffect(() => {
+        if (isEmpty(values)) {
+            setEmpty(true);
+        } else {
+            setEmpty(false);
+        }
+    }, [values]);
 
     useEffect(() => {
-        if (values['position'] && values['position'].length >= 2) {
+        if (values['position' + num] && values['position' + num].length >= 2) {
             setPositionValid(true);
         } else {
             setPositionValid(false);
         }
-    }, [values['position']]);
+    }, [values['position' + num]]);
 
     useEffect(() => {
-        if (values['company'] && values['company'].length >= 2) {
+        if (values['company' + num] && values['company' + num].length >= 2) {
             setCompanyValid(true);
         } else {
             setCompanyValid(false);
         }
-    }, [values['company']]);
+    }, [values['company' + num]]);
 
     useEffect(() => {
-        if (values['startDate']) {
+        if (values['startDate' + num]) {
             setStartDateValid(true);
         } else {
             setStartDateValid(false);
         }
-    }, [values['startDate']]);
+    }, [values['startDate' + num]]);
 
     useEffect(() => {
-        if (values['endDate']) {
+        if (values['endDate' + num]) {
             setEndDateValid(true);
         } else {
             setEndDateValid(false);
         }
-    }, [values['endDate']]);
+    }, [values['endDate' + num]]);
 
     useEffect(() => {
         setAllValid(
@@ -50,45 +73,45 @@ const SingleExperience = ({ doValidation, values, setValues, setAllValid }) => {
             <InputGroup
                 setValues={setValues}
                 values={values}
-                id={'position'}
+                id={'position' + num}
                 labelText="თანამდებობა"
                 placeholderText="თანამდებობა"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
-                doValidation={doValidation}
+                doValidation={!empty}
                 isValid={positionValid}
             />
             <InputGroup
                 setValues={setValues}
                 values={values}
-                id={'company'}
+                id={'company' + num}
                 labelText="დამსაქმებელი"
                 placeholderText="დამსაქმებელი"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
-                doValidation={doValidation}
+                doValidation={!empty}
                 isValid={companyValid}
             />
             <div className="horizontalGroup">
                 <InputGroup
                     setValues={setValues}
                     values={values}
-                    id={'startDate'}
+                    id={'startDate' + num}
                     labelText="დაწყების რიცხვი"
                     placeholderText="დაწყების რიცხვი"
                     size="small"
-                    doValidation={doValidation}
+                    doValidation={!empty}
                     isValid={startDateValid}
                     type="date"
                 />
                 <InputGroup
                     setValues={setValues}
                     values={values}
-                    id={'endDate'}
+                    id={'endDate' + num}
                     labelText="დამთავრების რიცხვი"
                     placeholderText="დამთავრების რიცხვი"
                     size="small"
-                    doValidation={doValidation}
+                    doValidation={!empty}
                     isValid={endDateValid}
                     type="date"
                 />

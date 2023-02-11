@@ -35,50 +35,11 @@ const ExperienceForm = ({ values, setValues }) => {
         }
     }, [values]);
 
-    const [positionValid, setPositionValid] = useState(false);
-    const [companyValid, setCompanyValid] = useState(false);
-    const [startDateValid, setStartDateValid] = useState(false);
-    const [endDateValid, setEndDateValid] = useState(false);
-
     const [allValid, setAllValid] = useState(false);
 
     useEffect(() => {
-        if (values['position'] && values['position'].length >= 2) {
-            setPositionValid(true);
-        } else {
-            setPositionValid(false);
-        }
-    }, [values['position']]);
-
-    useEffect(() => {
-        if (values['company'] && values['company'].length >= 2) {
-            setCompanyValid(true);
-        } else {
-            setCompanyValid(false);
-        }
-    }, [values['company']]);
-
-    useEffect(() => {
-        if (values['startDate']) {
-            setStartDateValid(true);
-        } else {
-            setStartDateValid(false);
-        }
-    }, [values['startDate']]);
-
-    useEffect(() => {
-        if (values['endDate']) {
-            setEndDateValid(true);
-        } else {
-            setEndDateValid(false);
-        }
-    }, [values['endDate']]);
-
-    useEffect(() => {
-        setAllValid(
-            positionValid && companyValid && startDateValid && endDateValid
-        );
-    }, [positionValid, companyValid, startDateValid, endDateValid]);
+        setAllValid(true);
+    }, []);
 
     const [numExperiences, setNumExperiences] = useState(1);
     const [experienceList, setExperienceList] = useState([]);
@@ -89,7 +50,7 @@ const ExperienceForm = ({ values, setValues }) => {
             arr.push(
                 <SingleExperience
                     key={i}
-                    doValidation={!empty}
+                    num={i}
                     values={values}
                     setValues={setValues}
                     setAllValid={setAllValid}
@@ -98,7 +59,7 @@ const ExperienceForm = ({ values, setValues }) => {
         }
         console.log(arr);
         setExperienceList(arr);
-    }, [numExperiences]);
+    }, [numExperiences, values, empty]);
     const addExperience = (e) => {
         e.preventDefault();
         setNumExperiences((prev) => (prev += 1));

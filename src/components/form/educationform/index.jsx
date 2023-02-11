@@ -4,7 +4,7 @@ import Header from '../header';
 import { useNavigate } from 'react-router-dom';
 import SingleEducation from '../singleeducation';
 
-const EducationForm = ({ values, setValues }) => {
+const EducationForm = ({ values, setValues, submit }) => {
     const navigate = useNavigate();
 
     const [educations, setEducations] = useState(() => {
@@ -33,7 +33,7 @@ const EducationForm = ({ values, setValues }) => {
         }
 
         if (numSections > 0 && eachSectionValid) {
-            navigate('/resume');
+            submit();
         }
     };
     const goBack = () => {
@@ -81,15 +81,15 @@ const EducationForm = ({ values, setValues }) => {
                 let currEducation = educations[i];
                 if (currEducation) {
                     if (
-                        currEducation['institution'] ||
-                        currEducation['diploma'] ||
-                        currEducation['endDate'] ||
+                        currEducation['institute'] ||
+                        currEducation['degree'] ||
+                        currEducation['due_date'] ||
                         currEducation['description']
                     ) {
                         let currObj = {
-                            institution: currEducation['institution'] || '',
-                            diploma: currEducation['diploma'] || '',
-                            endDate: currEducation['endDate'] || '',
+                            institute: currEducation['institute'] || '',
+                            degree: currEducation['degree'] || '',
+                            due_date: currEducation['due_date'] || '',
                             description: currEducation['description'] || '',
                         };
                         educationsArr.push(currObj);

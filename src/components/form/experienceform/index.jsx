@@ -82,16 +82,16 @@ const ExperienceForm = ({ values, setValues }) => {
                 if (currExperience) {
                     if (
                         currExperience['position'] ||
-                        currExperience['company'] ||
-                        currExperience['startDate'] ||
-                        currExperience['endDate'] ||
+                        currExperience['employer'] ||
+                        currExperience['start_date'] ||
+                        currExperience['due_date'] ||
                         currExperience['description']
                     ) {
                         let currObj = {
                             position: currExperience['position'] || '',
-                            company: currExperience['company'] || '',
-                            startDate: currExperience['startDate'] || '',
-                            endDate: currExperience['endDate'] || '',
+                            employer: currExperience['employer'] || '',
+                            start_date: currExperience['start_date'] || '',
+                            due_date: currExperience['due_date'] || '',
                             description: currExperience['description'],
                         };
                         experiencesArr.push(currObj);

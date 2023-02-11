@@ -16,18 +16,18 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
         });
     }, [curr]);
 
-    const [institutionValid, setInstitutionValid] = useState(false);
-    const [diplomaValid, setDiplomaValid] = useState(false);
-    const [endDateValid, setEndDateValid] = useState(false);
+    const [instituteValid, setInstituteValid] = useState(false);
+    const [degreeValid, setDegreeValid] = useState(false);
+    const [dueDateValid, setDueDateValid] = useState(false);
     const [descriptionValid, setDescriptionValid] = useState(false);
     const [empty, setEmpty] = useState(true);
-    const [diplomas, setDiplomas] = useState([]);
+    const [degrees, setDegrees] = useState([]);
 
     useEffect(() => {
         fetch('https://resume.redberryinternship.ge/api/degrees')
             .then((res) => res.json())
             .then((result) => {
-                setDiplomas(result);
+                setDegrees(result);
             });
     }, []);
     function isEmpty(obj) {
@@ -47,28 +47,28 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
     }, [curr]);
 
     useEffect(() => {
-        if (curr && curr['institution'] && curr['institution'].length >= 2) {
-            setInstitutionValid(true);
+        if (curr && curr['institute'] && curr['institute'].length >= 2) {
+            setInstituteValid(true);
         } else {
-            setInstitutionValid(false);
+            setInstituteValid(false);
         }
-    }, [curr['institution']]);
+    }, [curr['institute']]);
 
     useEffect(() => {
-        if (curr && curr['diploma'] && curr['diploma'].length >= 2) {
-            setDiplomaValid(true);
+        if (curr && curr['degree'] && curr['degree'].length >= 2) {
+            setDegreeValid(true);
         } else {
-            setDiplomaValid(false);
+            setDegreeValid(false);
         }
-    }, [curr['diploma']]);
+    }, [curr['degree']]);
 
     useEffect(() => {
-        if (curr['endDate']) {
-            setEndDateValid(true);
+        if (curr['due_date']) {
+            setDueDateValid(true);
         } else {
-            setEndDateValid(false);
+            setDueDateValid(false);
         }
-    }, [curr['endDate']]);
+    }, [curr['due_date']]);
     useEffect(() => {
         if (curr && curr['description']) {
             setDescriptionValid(true);
@@ -79,30 +79,30 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
 
     useEffect(() => {
         setAllValid((prev) => {
-            console.log('inst', institutionValid);
-            console.log('diploma', diplomaValid);
-            console.log('end', endDateValid);
+            console.log('inst', instituteValid);
+            console.log('degree', degreeValid);
+            console.log('end', dueDateValid);
             console.log('desc', descriptionValid);
             return {
                 ...prev,
                 [num]:
-                    (institutionValid &&
-                        diplomaValid &&
-                        endDateValid &&
+                    (instituteValid &&
+                        degreeValid &&
+                        dueDateValid &&
                         descriptionValid) ||
                     empty,
             };
         });
-    }, [institutionValid, diplomaValid, endDateValid, descriptionValid, empty]);
+    }, [instituteValid, degreeValid, dueDateValid, descriptionValid, empty]);
 
     const handleDescriptionChange = (event) => {
         setCurr((prev) => {
             return { ...prev, description: event.target.value };
         });
     };
-    const handleDiplomaChange = (event) => {
+    const handleDegreeChange = (event) => {
         setCurr((prev) => {
-            return { ...prev, diploma: event.target.value };
+            return { ...prev, degree: event.target.value };
         });
     };
     return (
@@ -110,13 +110,13 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
             <InputGroup
                 setValues={setCurr}
                 values={curr}
-                id={'institution'}
+                id={'institute'}
                 labelText="სასწავლებელი"
                 placeholderText="სასწავლებელი"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
                 doValidation={!empty}
-                isValid={institutionValid}
+                isValid={instituteValid}
             />
             <div className="horizontalGroup">
                 <div className="inpGroup">
@@ -125,17 +125,17 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
                         className={`input ${
                             empty
                                 ? ''
-                                : diplomaValid
+                                : degreeValid
                                 ? 'greenBorder'
                                 : 'redBorder'
                         }`}
                         rows="5"
                         placeholder="ზოგადი ინფო შენ შესახებ"
-                        value={curr['diploma'] || ''}
-                        onChange={handleDiplomaChange}
+                        value={curr['degree'] || ''}
+                        onChange={handleDegreeChange}
                     >
                         <option></option>
-                        {diplomas.map((item) => (
+                        {degrees.map((item) => (
                             <option key={item.id} value={item.title}>
                                 {item.title}
                             </option>
@@ -145,12 +145,12 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
                 <InputGroup
                     setValues={setCurr}
                     values={curr}
-                    id={'endDate'}
+                    id={'due_date'}
                     labelText="დამთავრების რიცხვი"
                     placeholderText="დამთავრების რიცხვი"
                     size="small"
                     doValidation={!empty}
-                    isValid={endDateValid}
+                    isValid={dueDateValid}
                     type="date"
                     doCheck={false}
                 />

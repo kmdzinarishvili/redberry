@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Education from './pages/Education';
 import PersonalInfo from './pages/PersonalInfo';
 import Experience from './pages/Experience';
+import Resume from './pages/Resume';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/personal_info" element={<PersonalInfo />} />
                 <Route path="/experience" element={<Experience />} />
                 <Route path="/education" element={<Education />} />
+                <Route path="/resume" element={<Resume />} />
             </Routes>
         </Router>
     );

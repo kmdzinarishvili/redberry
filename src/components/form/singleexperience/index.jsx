@@ -16,9 +16,9 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
         });
     }, [curr]);
     const [positionValid, setPositionValid] = useState(false);
-    const [companyValid, setCompanyValid] = useState(false);
+    const [employerValid, setEmployerValid] = useState(false);
     const [startDateValid, setStartDateValid] = useState(false);
-    const [endDateValid, setEndDateValid] = useState(false);
+    const [dueDateValid, setDueDateValid] = useState(false);
     const [descriptionValid, setDescriptionValid] = useState(false);
     const [empty, setEmpty] = useState(true);
     function isEmpty(obj) {
@@ -46,28 +46,28 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
     }, [curr['position']]);
 
     useEffect(() => {
-        if (curr && curr['company'] && curr['company'].length >= 2) {
-            setCompanyValid(true);
+        if (curr && curr['employer'] && curr['employer'].length >= 2) {
+            setEmployerValid(true);
         } else {
-            setCompanyValid(false);
+            setEmployerValid(false);
         }
-    }, [curr['company']]);
+    }, [curr['employer']]);
 
     useEffect(() => {
-        if (curr['startDate']) {
+        if (curr['start_date']) {
             setStartDateValid(true);
         } else {
             setStartDateValid(false);
         }
-    }, [curr['startDate']]);
+    }, [curr['start_date']]);
 
     useEffect(() => {
-        if (curr['endDate']) {
-            setEndDateValid(true);
+        if (curr['due_date']) {
+            setDueDateValid(true);
         } else {
-            setEndDateValid(false);
+            setDueDateValid(false);
         }
-    }, [curr['endDate']]);
+    }, [curr['due_date']]);
     useEffect(() => {
         if (curr && curr['description'] && curr['description'].length >= 2) {
             setDescriptionValid(true);
@@ -82,18 +82,18 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                 ...prev,
                 [num]:
                     (positionValid &&
-                        companyValid &&
+                        employerValid &&
                         startDateValid &&
-                        endDateValid &&
+                        dueDateValid &&
                         descriptionValid) ||
                     empty,
             };
         });
     }, [
         positionValid,
-        companyValid,
+        employerValid,
         startDateValid,
-        endDateValid,
+        dueDateValid,
         descriptionValid,
         empty,
     ]);
@@ -119,19 +119,19 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
             <InputGroup
                 setValues={setCurr}
                 values={curr}
-                id={'company'}
+                id={'employer'}
                 labelText="დამსაქმებელი"
                 placeholderText="დამსაქმებელი"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
                 doValidation={!empty}
-                isValid={companyValid}
+                isValid={employerValid}
             />
             <div className="horizontalGroup">
                 <InputGroup
                     setValues={setCurr}
                     values={curr}
-                    id={'startDate'}
+                    id={'start_date'}
                     labelText="დაწყების რიცხვი"
                     placeholderText="დაწყების რიცხვი"
                     size="small"
@@ -143,12 +143,12 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                 <InputGroup
                     setValues={setCurr}
                     values={curr}
-                    id={'endDate'}
+                    id={'due_date'}
                     labelText="დამთავრების რიცხვი"
                     placeholderText="დამთავრების რიცხვი"
                     size="small"
                     doValidation={!empty}
-                    isValid={endDateValid}
+                    isValid={dueDateValid}
                     type="date"
                     doCheck={false}
                 />

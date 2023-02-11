@@ -15,6 +15,7 @@ const InputGroup = ({
     doValidation,
     isValid,
     type = 'text',
+    doCheck = true,
 }) => {
     const handleChange = (event) => {
         setValues((prev) => {
@@ -46,6 +47,7 @@ const InputGroup = ({
                     style={{ width: size === 'small' ? '371px' : '798px' }}
                 />
                 {doValidation &&
+                    doCheck &&
                     (isValid ? (
                         <img className="check" src={check} alt="check" />
                     ) : (

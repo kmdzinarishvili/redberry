@@ -6,7 +6,15 @@ import SingleExperience from '../singleexperience';
 
 const ExperienceForm = ({ values, setValues }) => {
     const navigate = useNavigate();
-    const [experiences, setExperiences] = useState([]);
+
+    const [experiences, setExperiences] = useState(() => {
+        console.log('in experiences', values);
+        return values || [];
+    });
+
+    useEffect(() => {
+        console.log('experiences in use effect', experiences);
+    }, [experiences]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,30 +30,18 @@ const ExperienceForm = ({ values, setValues }) => {
         navigate(-1);
     };
 
-    const [empty, setEmpty] = useState(true);
-    function isEmpty(obj) {
-        for (const key in obj) {
-            if (obj.hasOwnProperty(key) && obj[key] !== '') {
-                return false;
-            }
-        }
-        return true;
-    }
-    useEffect(() => {
-        if (isEmpty(values)) {
-            setEmpty(true);
-        } else {
-            setEmpty(false);
-        }
-    }, [values]);
-
     const [allValid, setAllValid] = useState({});
 
     useEffect(() => {
         setAllValid(true);
     }, []);
 
-    const [numExperiences, setNumExperiences] = useState(1);
+    const [numExperiences, setNumExperiences] = useState(() => {
+        if (values.length > 0) {
+            return values.length;
+        }
+        return 1;
+    });
     const [experienceList, setExperienceList] = useState([]);
 
     useEffect(() => {
@@ -62,15 +58,37 @@ const ExperienceForm = ({ values, setValues }) => {
             );
         }
         setExperienceList(arr);
-    }, [numExperiences, experiences, empty]);
+    }, [numExperiences, experiences]);
 
-    useEffect(() => {
-        console.log(experiences);
-    }, [experiences]);
     const addExperience = (e) => {
         e.preventDefault();
         setNumExperiences((prev) => (prev += 1));
     };
+    useEffect(() => {
+        let experiencesArr = [];
+        for (let i = 0; i < numExperiences; i++) {
+            if (experiences) {
+                let currExperience = experiences[i];
+                if (currExperience) {
+                    if (
+                        currExperience['position'] ||
+                        currExperience['company'] ||
+                        currExperience['startDate'] ||
+                        currExperience['endDate']
+                    ) {
+                        let currObj = {
+                            position: currExperience['position'] || '',
+                            company: currExperience['company'] || '',
+                            startDate: currExperience['startDate'] || '',
+                            endDate: currExperience['endDate'] || '',
+                        };
+                        experiencesArr.push(currObj);
+                    }
+                }
+            }
+        }
+        setValues(experiencesArr);
+    }, [experiences]);
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>

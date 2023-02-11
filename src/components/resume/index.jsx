@@ -40,12 +40,6 @@ const Resume = ({ values }) => {
                     <p className="aboutMeText">{values['aboutMe']}</p>
                 </div>
             )}
-            {values['aboutMe'] && (
-                <div>
-                    <h5 className="aboutMeTitle">ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ</h5>
-                    <p className="aboutMeText">{values['aboutMe']}</p>
-                </div>
-            )}
         </div>
     );
 };

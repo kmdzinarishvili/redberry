@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import InputGroup from '../inputgroup';
 
 const SingleExperience = ({ num, values, setValues, setAllValid }) => {
+    const [curr, setCurr] = useState(() => {
+        if (values && values[num]) {
+            return values[num];
+        }
+        return {};
+    });
+    useEffect(() => {
+        setValues((prev) => {
+            let previous = [...prev];
+            previous[num] = curr;
+            return previous;
+        });
+    }, [curr]);
     const [positionValid, setPositionValid] = useState(false);
     const [companyValid, setCompanyValid] = useState(false);
     const [startDateValid, setStartDateValid] = useState(false);
@@ -9,78 +22,72 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
     const [empty, setEmpty] = useState(true);
     function isEmpty(obj) {
         for (const key in obj) {
-            if (
-                key === 'position' + num ||
-                key === 'company' + num ||
-                key === 'startDate' + num ||
-                key === 'endState' + num
-            ) {
-                if (obj.hasOwnProperty(key) && obj[key] !== '') {
-                    return false;
-                }
+            if (obj.hasOwnProperty(key) && obj[key] !== '') {
+                return false;
             }
         }
         return true;
     }
     useEffect(() => {
-        if (isEmpty(values)) {
+        if (isEmpty(curr)) {
             setEmpty(true);
         } else {
             setEmpty(false);
         }
-    }, [values]);
+    }, [curr]);
 
     useEffect(() => {
-        if (values['position' + num] && values['position' + num].length >= 2) {
+        if (curr && curr['position'] && curr['position'].length >= 2) {
             setPositionValid(true);
         } else {
             setPositionValid(false);
         }
-    }, [values['position' + num]]);
+    }, [curr['position']]);
 
     useEffect(() => {
-        if (values['company' + num] && values['company' + num].length >= 2) {
+        if (curr && curr['company'] && curr['company'].length >= 2) {
             setCompanyValid(true);
         } else {
             setCompanyValid(false);
         }
-    }, [values['company' + num]]);
+    }, [curr['company']]);
 
     useEffect(() => {
-        if (values['startDate' + num]) {
+        if (curr['startDate']) {
             setStartDateValid(true);
         } else {
             setStartDateValid(false);
         }
-    }, [values['startDate' + num]]);
+    }, [curr['startDate']]);
 
     useEffect(() => {
-        if (values['endDate' + num]) {
+        if (curr['endDate']) {
             setEndDateValid(true);
         } else {
             setEndDateValid(false);
         }
-    }, [values['endDate' + num]]);
+    }, [curr['endDate']]);
 
     useEffect(() => {
         setAllValid((prev) => {
             return {
                 ...prev,
-                num:
-                    positionValid &&
-                    companyValid &&
-                    startDateValid &&
-                    endDateValid,
+                [num]:
+                    (positionValid &&
+                        companyValid &&
+                        startDateValid &&
+                        endDateValid) ||
+                    empty,
             };
         });
-    }, [positionValid, companyValid, startDateValid, endDateValid]);
+    }, [positionValid, companyValid, startDateValid, endDateValid, empty]);
 
     return (
         <>
             <InputGroup
-                setValues={setValues}
-                values={values}
-                id={'position' + num}
+                setValues={setCurr}
+                values={curr}
+                id={'position'}
                 labelText="თანამდებობა"
                 placeholderText="თანამდებობა"
                 desc="მინიმუმ 2 სიმბოლო"
@@ -89,9 +96,9 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                 isValid={positionValid}
             />
             <InputGroup
-                setValues={setValues}
-                values={values}
-                id={'company' + num}
+                setValues={setCurr}
+                values={curr}
+                id={'company'}
                 labelText="დამსაქმებელი"
                 placeholderText="დამსაქმებელი"
                 desc="მინიმუმ 2 სიმბოლო"
@@ -101,26 +108,28 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
             />
             <div className="horizontalGroup">
                 <InputGroup
-                    setValues={setValues}
-                    values={values}
-                    id={'startDate' + num}
+                    setValues={setCurr}
+                    values={curr}
+                    id={'startDate'}
                     labelText="დაწყების რიცხვი"
                     placeholderText="დაწყების რიცხვი"
                     size="small"
                     doValidation={!empty}
                     isValid={startDateValid}
                     type="date"
+                    doCheck={false}
                 />
                 <InputGroup
-                    setValues={setValues}
-                    values={values}
-                    id={'endDate' + num}
+                    setValues={setCurr}
+                    values={curr}
+                    id={'endDate'}
                     labelText="დამთავრების რიცხვი"
                     placeholderText="დამთავრების რიცხვი"
                     size="small"
                     doValidation={!empty}
                     isValid={endDateValid}
                     type="date"
+                    doCheck={false}
                 />
             </div>
         </>

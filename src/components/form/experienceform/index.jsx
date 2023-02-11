@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import InputGroup from '../inputgroup';
 import Header from '../header';
 import { useNavigate } from 'react-router-dom';
 import SingleExperience from '../singleexperience';
 
 const ExperienceForm = ({ values, setValues }) => {
     const navigate = useNavigate();
+    const [experiences, setExperiences] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,14 +55,18 @@ const ExperienceForm = ({ values, setValues }) => {
                 <SingleExperience
                     key={i}
                     num={i}
-                    values={values}
-                    setValues={setValues}
+                    values={experiences}
+                    setValues={setExperiences}
                     setAllValid={setAllValid}
                 />
             );
         }
         setExperienceList(arr);
-    }, [numExperiences, values, empty]);
+    }, [numExperiences, experiences, empty]);
+
+    useEffect(() => {
+        console.log(experiences);
+    }, [experiences]);
     const addExperience = (e) => {
         e.preventDefault();
         setNumExperiences((prev) => (prev += 1));

@@ -66,7 +66,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
         setAllValid((prev) => {
             return {
                 ...prev,
-                [num]:
+                num:
                     positionValid &&
                     companyValid &&
                     startDateValid &&

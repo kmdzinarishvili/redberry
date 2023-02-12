@@ -94,7 +94,7 @@ const PersonalForm = ({ values, setValues }) => {
         }
         if (
             obj['phone'] &&
-            /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/.test(values['phone'])
+            /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/.test(obj['phone'])
         ) {
             setPhoneValid(true);
         } else {

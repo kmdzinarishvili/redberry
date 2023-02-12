@@ -173,7 +173,6 @@ const PersonalForm = ({ values, setValues }) => {
                     doValidation={!empty}
                     isValid={emailValid}
                 />
-                {/* add spaces later */}
                 <InputGroup
                     setValues={setValues}
                     values={values}

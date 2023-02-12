@@ -66,7 +66,6 @@ const Education = () => {
             )
             .then(function (response) {
                 if (response.status === 201) {
-                    console.log(response);
                     navigate('/resume', { state: response.data });
                 }
             })

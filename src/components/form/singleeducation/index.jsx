@@ -26,7 +26,6 @@ const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
     useEffect(() => {
         if (curr['degree_id']) {
             for (let i = 0; i < degrees.length; i++) {
-                console.log(degrees[i]['id'], curr['degree_id']);
                 if (degrees[i]['id'] === parseInt(curr['degree_id'])) {
                     setDegree(degrees[i]['title']);
                 }

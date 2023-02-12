@@ -63,14 +63,12 @@ const PersonalForm = ({ values, setValues }) => {
     const [phoneValid, setPhoneValid] = useState(false);
     const [allValid, setAllValid] = useState(false);
 
-    useEffect(() => {
+    const validate = (values) => {
         if (values['image']) {
             setImageValid(true);
         } else {
             setImageValid(false);
         }
-    }, [values]);
-    useEffect(() => {
         if (
             values['firstName'] &&
             values['firstName'].length >= 2 &&
@@ -80,9 +78,6 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setFirstNameValid(false);
         }
-    }, [values]);
-
-    useEffect(() => {
         if (
             values['lastName'] &&
             values['lastName'].length >= 2 &&
@@ -92,17 +87,11 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setLastNameValid(false);
         }
-    }, [values]);
-
-    useEffect(() => {
         if (values['email'] && values['email'].endsWith('@redberry.ge')) {
             setEmailValid(true);
         } else {
             setEmailValid(false);
         }
-    }, [values]);
-
-    useEffect(() => {
         if (
             values['phone'] &&
             /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/.test(values['phone'])
@@ -111,6 +100,10 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setPhoneValid(false);
         }
+    };
+
+    useEffect(() => {
+        validate(values);
     }, [values]);
 
     useEffect(() => {

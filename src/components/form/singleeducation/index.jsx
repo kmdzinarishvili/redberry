@@ -49,35 +49,30 @@ const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
         }
     }, [curr]);
 
-    useEffect(() => {
+    const validate = (curr) => {
         if (curr && curr['institute'] && curr['institute'].length >= 2) {
             setInstituteValid(true);
         } else {
             setInstituteValid(false);
         }
-    }, [curr]);
-
-    useEffect(() => {
         if (degree) {
             setDegreeValid(true);
         } else {
             setDegreeValid(false);
         }
-    }, [degree]);
-
-    useEffect(() => {
         if (curr['due_date']) {
             setDueDateValid(true);
         } else {
             setDueDateValid(false);
         }
-    }, [curr]);
-    useEffect(() => {
         if (curr && curr['description']) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);
         }
+    };
+    useEffect(() => {
+        validate(curr);
     }, [curr]);
 
     useEffect(() => {

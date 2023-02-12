@@ -43,43 +43,36 @@ const SingleExperience = ({
         }
     }, [curr]);
 
-    useEffect(() => {
+    const validate = (curr) => {
         if (curr && curr['position'] && curr['position'].length >= 2) {
             setPositionValid(true);
         } else {
             setPositionValid(false);
         }
-    }, [curr]);
-
-    useEffect(() => {
         if (curr && curr['employer'] && curr['employer'].length >= 2) {
             setEmployerValid(true);
         } else {
             setEmployerValid(false);
         }
-    }, [curr]);
-
-    useEffect(() => {
         if (curr['start_date']) {
             setStartDateValid(true);
         } else {
             setStartDateValid(false);
         }
-    }, [curr]);
-
-    useEffect(() => {
         if (curr['due_date']) {
             setDueDateValid(true);
         } else {
             setDueDateValid(false);
         }
-    }, [curr]);
-    useEffect(() => {
         if (curr && curr['description'] && curr['description'].length >= 2) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);
         }
+    };
+
+    useEffect(() => {
+        validate(curr);
     }, [curr]);
 
     useEffect(() => {

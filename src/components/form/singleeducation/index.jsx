@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InputGroup from '../inputgroup';
 
-const SingleEducation = ({ num, values, setValues, setAllValid }) => {
+const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
     const [curr, setCurr] = useState(() => {
         if (values && values[num]) {
             return values[num];
@@ -14,7 +14,7 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
             previous[num] = curr;
             return previous;
         });
-    }, [curr]);
+    }, [curr, num, setValues]);
 
     const [degree, setDegree] = useState('');
     const [instituteValid, setInstituteValid] = useState(false);
@@ -22,22 +22,17 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
     const [dueDateValid, setDueDateValid] = useState(false);
     const [descriptionValid, setDescriptionValid] = useState(false);
     const [empty, setEmpty] = useState(true);
-    const [degrees, setDegrees] = useState([]);
 
     useEffect(() => {
-        fetch('https://resume.redberryinternship.ge/api/degrees')
-            .then((res) => res.json())
-            .then((result) => {
-                setDegrees(result);
-                if (curr['degree_id']) {
-                    for (let i = 0; i < result.length; i++) {
-                        if (result[i]['id'] == curr['degree_id']) {
-                            setDegree(result[i]['title']);
-                        }
-                    }
+        if (curr['degree_id']) {
+            for (let i = 0; i < degrees.length; i++) {
+                console.log(degrees[i]['id'], curr['degree_id']);
+                if (degrees[i]['id'] === parseInt(curr['degree_id'])) {
+                    setDegree(degrees[i]['title']);
                 }
-            });
-    }, []);
+            }
+        }
+    }, [degrees]);
     function isEmpty(obj) {
         for (const key in obj) {
             if (obj.hasOwnProperty(key) && obj[key] !== '') {
@@ -97,7 +92,15 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
                     empty,
             };
         });
-    }, [instituteValid, degreeValid, dueDateValid, descriptionValid, empty]);
+    }, [
+        instituteValid,
+        degreeValid,
+        dueDateValid,
+        descriptionValid,
+        empty,
+        num,
+        setAllValid,
+    ]);
 
     const handleDescriptionChange = (event) => {
         setCurr((prev) => {

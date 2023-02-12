@@ -6,11 +6,9 @@ import Resume from '../../components/resume';
 import '../../styles/Form.css';
 
 const Experience = () => {
-    const [personalInfo, setPersonalInfo] = useState(() => {
-        const saved = localStorage.getItem('personal-info');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || {};
-    });
+    const savedPersonalInfo = localStorage.getItem('personal-info');
+    const parsedPersonalInfo = JSON.parse(savedPersonalInfo);
+    const personalInfo = parsedPersonalInfo || {};
 
     const [values, setValues] = useState(() => {
         const saved = localStorage.getItem('experiences');

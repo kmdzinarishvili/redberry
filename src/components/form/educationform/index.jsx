@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../header';
 import { useNavigate } from 'react-router-dom';
 import SingleEducation from '../singleeducation';
+import axios from 'axios';
 
 const EducationForm = ({ values, setValues, submit }) => {
     const navigate = useNavigate();
@@ -10,6 +11,16 @@ const EducationForm = ({ values, setValues, submit }) => {
     const [educations, setEducations] = useState(() => {
         return values || [];
     });
+
+    const [degrees, setDegrees] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get('https://resume.redberryinternship.ge/api/degrees')
+            .then((res) => {
+                setDegrees(res.data);
+            });
+    }, []);
     function isEmpty(obj) {
         for (const key in obj) {
             if (obj.hasOwnProperty(key) && obj[key] !== '') {
@@ -67,6 +78,7 @@ const EducationForm = ({ values, setValues, submit }) => {
                     values={educations}
                     setValues={setEducations}
                     setAllValid={setAllValid}
+                    degrees={degrees}
                 />
             );
         }
@@ -101,7 +113,7 @@ const EducationForm = ({ values, setValues, submit }) => {
             }
         }
         setValues(educationsArr);
-    }, [educations]);
+    }, [educations, numEducations, setValues]);
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>

@@ -107,7 +107,7 @@ const ExperienceForm = ({ values, setValues }) => {
             }
         }
         setValues(experiencesArr);
-    }, [experiences]);
+    }, [experiences, numExperiences, setValues]);
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>

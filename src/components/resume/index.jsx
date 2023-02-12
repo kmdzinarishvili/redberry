@@ -18,19 +18,18 @@ const Resume = ({ personalInfo, experiences, educations, border = false }) => {
     }, []);
     useEffect(() => {
         if (educations) {
-            educations.map(() => {
-                let tempDegrees = [];
-                for (let i = 0; i < educations.length; i++) {
-                    for (let j = 0; j < degreeNames.length; j++) {
-                        if (
-                            degreeNames[j]['id'] == educations[i]['degree_id']
-                        ) {
-                            tempDegrees.push(degreeNames[i]['title']);
-                        }
+            let tempDegrees = [];
+            for (let i = 0; i < educations.length; i++) {
+                for (let j = 0; j < degreeNames.length; j++) {
+                    if (
+                        degreeNames[j]['id'] ===
+                        parseInt(educations[i]['degree_id'])
+                    ) {
+                        tempDegrees.push(degreeNames[i]['title']);
                     }
                 }
-                setDegrees(tempDegrees);
-            });
+            }
+            setDegrees(tempDegrees);
         }
     }, [educations, degreeNames]);
     return (
@@ -45,7 +44,7 @@ const Resume = ({ personalInfo, experiences, educations, border = false }) => {
                 <img
                     className="profile"
                     src={personalInfo['image']}
-                    alt="uploaded Image"
+                    alt="uploaded profile"
                 />
             )}
             <div className="email">

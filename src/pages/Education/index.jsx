@@ -11,16 +11,13 @@ import '../../styles/Form.css';
 const Education = () => {
     const navigate = useNavigate();
 
-    const [personalInfo, setPersonalInfo] = useState(() => {
-        const saved = localStorage.getItem('personal-info');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || {};
-    });
-    const [experiences, setExperiences] = useState(() => {
-        const saved = localStorage.getItem('experiences');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || [];
-    });
+    const savedPersonalInfo = localStorage.getItem('personal-info');
+    const parsedPersonalInfo = JSON.parse(savedPersonalInfo);
+    const personalInfo = parsedPersonalInfo || {};
+
+    const savedExperiences = localStorage.getItem('experiences');
+    const parsedExperiences = JSON.parse(savedExperiences);
+    const experiences = parsedExperiences || [];
 
     const [values, setValues] = useState(() => {
         const saved = localStorage.getItem('education');

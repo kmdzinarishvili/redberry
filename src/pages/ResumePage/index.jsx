@@ -9,22 +9,17 @@ import x from '../../imgs/resume/x.png';
 
 const ResumePage = () => {
     const [showNotification, setShowNotification] = useState(true);
-    const [personalInfo, setPersonalInfo] = useState(() => {
-        const saved = localStorage.getItem('personal-info');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || {};
-    });
-    const [experiences, setExperiences] = useState(() => {
-        const saved = localStorage.getItem('experiences');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || [];
-    });
+    const savedPersonalInfo = localStorage.getItem('personal-info');
+    const parsedPersonalInfo = JSON.parse(savedPersonalInfo);
+    const personalInfo = parsedPersonalInfo || {};
 
-    const [education, setEducation] = useState(() => {
-        const saved = localStorage.getItem('education');
-        const parsedValues = JSON.parse(saved);
-        return parsedValues || [];
-    });
+    const savedExperiences = localStorage.getItem('experiences');
+    const parsedExperiences = JSON.parse(savedExperiences);
+    const experiences = parsedExperiences || [];
+
+    const savedEducations = localStorage.getItem('education');
+    const parsedEducations = JSON.parse(savedEducations);
+    const educations = parsedEducations || [];
 
     const navigate = useNavigate();
 
@@ -58,7 +53,7 @@ const ResumePage = () => {
             <Resume
                 personalInfo={personalInfo}
                 experiences={experiences}
-                educations={education}
+                educations={educations}
                 border={true}
             />
             {showNotification && (

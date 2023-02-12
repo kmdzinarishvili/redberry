@@ -20,7 +20,7 @@ const SingleExperience = ({
             previous[num] = curr;
             return previous;
         });
-    }, [curr]);
+    }, [curr, num, setValues]);
     const [positionValid, setPositionValid] = useState(false);
     const [employerValid, setEmployerValid] = useState(false);
     const [startDateValid, setStartDateValid] = useState(false);
@@ -102,6 +102,7 @@ const SingleExperience = ({
         dueDateValid,
         descriptionValid,
         empty,
+        num,
         setAllValid,
     ]);
 

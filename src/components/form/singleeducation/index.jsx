@@ -60,7 +60,7 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
         } else {
             setInstituteValid(false);
         }
-    }, [curr['institute']]);
+    }, [curr]);
 
     useEffect(() => {
         if (degree) {
@@ -76,14 +76,14 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
         } else {
             setDueDateValid(false);
         }
-    }, [curr['due_date']]);
+    }, [curr]);
     useEffect(() => {
         if (curr && curr['description']) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);
         }
-    }, [curr['description']]);
+    }, [curr]);
 
     useEffect(() => {
         setAllValid((prev) => {

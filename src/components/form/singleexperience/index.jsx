@@ -27,14 +27,14 @@ const SingleExperience = ({
     const [dueDateValid, setDueDateValid] = useState(false);
     const [descriptionValid, setDescriptionValid] = useState(false);
     const [empty, setEmpty] = useState(true);
-    function isEmpty(obj) {
+    const isEmpty = (obj) => {
         for (const key in obj) {
             if (obj.hasOwnProperty(key) && obj[key] !== '') {
                 return false;
             }
         }
         return true;
-    }
+    };
     useEffect(() => {
         if (isEmpty(curr)) {
             setEmpty(true);
@@ -49,7 +49,7 @@ const SingleExperience = ({
         } else {
             setPositionValid(false);
         }
-    }, [curr['position']]);
+    }, [curr]);
 
     useEffect(() => {
         if (curr && curr['employer'] && curr['employer'].length >= 2) {
@@ -57,7 +57,7 @@ const SingleExperience = ({
         } else {
             setEmployerValid(false);
         }
-    }, [curr['employer']]);
+    }, [curr]);
 
     useEffect(() => {
         if (curr['start_date']) {
@@ -65,7 +65,7 @@ const SingleExperience = ({
         } else {
             setStartDateValid(false);
         }
-    }, [curr['start_date']]);
+    }, [curr]);
 
     useEffect(() => {
         if (curr['due_date']) {
@@ -73,14 +73,14 @@ const SingleExperience = ({
         } else {
             setDueDateValid(false);
         }
-    }, [curr['due_date']]);
+    }, [curr]);
     useEffect(() => {
         if (curr && curr['description'] && curr['description'].length >= 2) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);
         }
-    }, [curr['description']]);
+    }, [curr]);
 
     useEffect(() => {
         setAllValid((prev) => {
@@ -102,6 +102,7 @@ const SingleExperience = ({
         dueDateValid,
         descriptionValid,
         empty,
+        setAllValid,
     ]);
 
     const handleDescriptionChange = (event) => {

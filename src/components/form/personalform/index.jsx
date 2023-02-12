@@ -69,7 +69,7 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setImageValid(false);
         }
-    }, [values['image']]);
+    }, [values]);
     useEffect(() => {
         if (
             values['firstName'] &&
@@ -80,7 +80,7 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setFirstNameValid(false);
         }
-    }, [values.firstName]);
+    }, [values]);
 
     useEffect(() => {
         if (
@@ -92,7 +92,7 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setLastNameValid(false);
         }
-    }, [values['lastName']]);
+    }, [values]);
 
     useEffect(() => {
         if (values['email'] && values['email'].endsWith('@redberry.ge')) {
@@ -100,7 +100,7 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setEmailValid(false);
         }
-    }, [values['email']]);
+    }, [values]);
 
     useEffect(() => {
         if (
@@ -111,7 +111,7 @@ const PersonalForm = ({ values, setValues }) => {
         } else {
             setPhoneValid(false);
         }
-    }, [values['phone']]);
+    }, [values]);
 
     useEffect(() => {
         setAllValid(

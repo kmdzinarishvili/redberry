@@ -16,6 +16,7 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
         });
     }, [curr]);
 
+    const [degree, setDegree] = useState('');
     const [instituteValid, setInstituteValid] = useState(false);
     const [degreeValid, setDegreeValid] = useState(false);
     const [dueDateValid, setDueDateValid] = useState(false);
@@ -28,6 +29,14 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
             .then((res) => res.json())
             .then((result) => {
                 setDegrees(result);
+                if (curr['degree_id']) {
+                    console.log('inside degree_id');
+                    for (let i = 0; i < result.length; i++) {
+                        if (result[i]['id'] == curr['degree_id']) {
+                            setDegree(result[i]['title']);
+                        }
+                    }
+                }
             });
     }, []);
     function isEmpty(obj) {
@@ -55,12 +64,12 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
     }, [curr['institute']]);
 
     useEffect(() => {
-        if (curr && curr['degree'] && curr['degree'].length >= 2) {
+        if (degree) {
             setDegreeValid(true);
         } else {
             setDegreeValid(false);
         }
-    }, [curr['degree']]);
+    }, [degree]);
 
     useEffect(() => {
         if (curr['due_date']) {
@@ -79,10 +88,6 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
 
     useEffect(() => {
         setAllValid((prev) => {
-            console.log('inst', instituteValid);
-            console.log('degree', degreeValid);
-            console.log('end', dueDateValid);
-            console.log('desc', descriptionValid);
             return {
                 ...prev,
                 [num]:
@@ -100,9 +105,13 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
             return { ...prev, description: event.target.value };
         });
     };
-    const handleDegreeChange = (event) => {
+    const handleDegreeChange = (e) => {
+        setDegree(e.target.value);
+        const index = e.target.selectedIndex;
+        const el = e.target.childNodes[index];
+        const option = el.getAttribute('id');
         setCurr((prev) => {
-            return { ...prev, degree: event.target.value };
+            return { ...prev, degree_id: option };
         });
     };
     return (
@@ -131,12 +140,16 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
                         }`}
                         rows="5"
                         placeholder="ზოგადი ინფო შენ შესახებ"
-                        value={curr['degree'] || ''}
+                        value={degree || ''}
                         onChange={handleDegreeChange}
                     >
                         <option></option>
                         {degrees.map((item) => (
-                            <option key={item.id} value={item.title}>
+                            <option
+                                key={item.id}
+                                id={item.id}
+                                value={item.title}
+                            >
                                 {item.title}
                             </option>
                         ))}

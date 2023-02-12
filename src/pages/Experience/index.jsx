@@ -20,7 +20,6 @@ const Experience = () => {
 
     useEffect(() => {
         const stringifiedValues = JSON.stringify(values);
-        console.log(stringifiedValues);
         localStorage.setItem('experiences', stringifiedValues);
     }, [values]);
 

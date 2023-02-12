@@ -5,6 +5,7 @@ import phoneIcon from '../../imgs/resume/phone.png';
 import '../../styles/Resume.css';
 
 const Resume = ({ values }) => {
+    console.log('image', values['image']);
     return (
         <div className="resumeContainer">
             <h2 className="name">

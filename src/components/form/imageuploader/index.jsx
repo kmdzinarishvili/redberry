@@ -7,9 +7,12 @@ const ImageUploader = ({ setImage }) => {
         hiddenFileInput.current.click();
     };
     const handleChange = (event) => {
-        const fileUploaded = URL.createObjectURL(event.target.files[0]);
-        console.log(event.target.files[0]);
-        setImage(fileUploaded);
+        const fileUploaded = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(fileUploaded);
+        reader.addEventListener('load', () => {
+            setImage(reader.result);
+        });
     };
     return (
         <div

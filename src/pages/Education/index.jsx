@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +19,6 @@ const Education = () => {
     const [experiences, setExperiences] = useState(() => {
         const saved = localStorage.getItem('experiences');
         const parsedValues = JSON.parse(saved);
-        console.log(parsedValues);
         return parsedValues || [];
     });
 
@@ -34,41 +34,47 @@ const Education = () => {
         localStorage.setItem('education', stringifiedValues);
     }, [values]);
 
-    const submit = () => {
-        // fetch('https://mywebsite.example/endpoint/', {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         name: personalInfo['firstName'],
-        //         surname: personalInfo['lastName'],
-        //         email: personalInfo['email'],
-        //         phone_number: personalInfo['phone'],
-        //         experiences: [
-        //             {
-        //                 position: 'back-end developer',
-        //                 employer: 'Redberry',
-        //                 start_date: '2019/09/09',
-        //                 due_date: '2020/09/23',
-        //                 description:
-        //                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare nunc dui, a pellentesque magna blandit dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis diam nisi, at venenatis dolor aliquet vel. Pellentesque aliquet leo nec tortor pharetra, ac consectetur orci bibendum.',
-        //             },
-        //         ],
-        //         educations: [
-        //             {
-        //                 institute: 'თსუ',
-        //                 degree: 'სტუდენტი',
-        //                 due_date: '2017/06/25',
-        //                 description:
-        //                     'სამართლის ფაკულტეტის მიზანი იყო მიგვეღო ფართო თეორიული ცოდნა სამართლის არსის, სისტემის, ძირითადი პრინციპების, სამართლებრივი სისტემების, ქართული სამართლის ისტორიული წყაროების, კერძო, სისხლის და საჯარო სამართლის სფეროების ძირითადი თეორიების, პრინციპებისა და რეგულირების თავისებურებების შესახებ.',
-        //             },
-        //         ],
-        //         image: personalInfo[""],
-        //         about_me: personalInfo["aboutMe"],
-        //     }),
-        // });
+    const submit = async () => {
+        function dataUrlToBlob(dataUrl) {
+            const parts = dataUrl.split(';base64,');
+            const contentType = parts[0].split(':')[1];
+            const byteCharacters = atob(parts[1]);
+            const byteArrays = [];
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteArrays.push(byteCharacters.charCodeAt(i));
+            }
+            const byteArray = new Uint8Array(byteArrays);
+            return new Blob([byteArray], { type: contentType });
+        }
+        const blob = dataUrlToBlob(personalInfo['image']);
+        const file = new File([blob], 'myFileName', { type: 'image/png' });
+
+        axios
+            .post(
+                'https://resume.redberryinternship.ge/api/cvs',
+                {
+                    name: personalInfo['firstName'],
+                    surname: personalInfo['lastName'],
+                    email: personalInfo['email'],
+                    phone_number: personalInfo['phone'].replace(/\s/g, ''),
+                    experiences: experiences,
+                    educations: values,
+                    image: file,
+                    about_me: personalInfo['aboutMe'],
+                },
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
         navigate('/resume');
     };
     return (

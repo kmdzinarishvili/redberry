@@ -88,7 +88,7 @@ const EducationForm = ({ values, setValues, submit }) => {
                     ) {
                         let currObj = {
                             institute: currEducation['institute'] || '',
-                            degree: currEducation['degree'] || '',
+                            degree_id: currEducation['degree_id'] || '',
                             due_date: currEducation['due_date'] || '',
                             description: currEducation['description'] || '',
                         };
@@ -97,7 +97,6 @@ const EducationForm = ({ values, setValues, submit }) => {
                 }
             }
         }
-        console.log('education', educationsArr);
         setValues(educationsArr);
     }, [educations]);
     return (

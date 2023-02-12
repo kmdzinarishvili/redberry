@@ -45,17 +45,6 @@ const PersonalForm = ({ values, setValues }) => {
         }
     }, [values]);
 
-    function isGeorgianString(s) {
-        const startLett = 4304;
-        const endLett = 4336;
-        let charCode;
-        for (let i = s.length; i--; ) {
-            charCode = s.charCodeAt(i);
-            if (charCode < startLett || charCode > endLett) return false;
-        }
-        return true;
-    }
-
     const [imageValid, setImageValid] = useState(false);
     const [firstNameValid, setFirstNameValid] = useState(false);
     const [lastNameValid, setLastNameValid] = useState(false);
@@ -64,6 +53,17 @@ const PersonalForm = ({ values, setValues }) => {
     const [allValid, setAllValid] = useState(false);
 
     const validate = (obj) => {
+        const isGeorgianString = (s) => {
+            const startLett = 4304;
+            const endLett = 4336;
+            let charCode;
+            for (let i = s.length; i--; ) {
+                charCode = s.charCodeAt(i);
+                if (charCode < startLett || charCode > endLett) return false;
+            }
+            return true;
+        };
+
         if (obj['image']) {
             setImageValid(true);
         } else {

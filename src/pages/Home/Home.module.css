@@ -1,5 +1,5 @@
 .home {
-    background-image: url(../../imgs//home/home_bg.png);
+    background-image: url(../../imgs/home/home_bg.png);
     display: flex;
     flex-direction: column;
 }

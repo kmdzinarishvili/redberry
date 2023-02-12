@@ -18,9 +18,9 @@ const PersonalInfo = () => {
     }, [values]);
 
     return (
-        <div className={`page horizontalGroup`}>
+        <div className={`page horizontalGroup formPage`}>
             <PersonalForm values={values} setValues={setValues} />
-            <Resume values={values} />
+            <Resume personalInfo={values} />
         </div>
     );
 };

@@ -6,6 +6,7 @@ import SingleExperience from '../singleexperience';
 
 const ExperienceForm = ({ values, setValues }) => {
     const navigate = useNavigate();
+    const [submitted, setSubmitted] = useState(false);
 
     const [experiences, setExperiences] = useState(() => {
         return values || [];
@@ -21,6 +22,7 @@ const ExperienceForm = ({ values, setValues }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitted(true);
         let eachSectionValid = true;
         let numSections = 0;
         for (const bool of Object.values(allValid)) {
@@ -40,6 +42,10 @@ const ExperienceForm = ({ values, setValues }) => {
         navigate(-1);
     };
 
+    const goToFirstPage = () => {
+        localStorage.clear();
+        navigate('/');
+    };
     const [allValid, setAllValid] = useState({});
 
     useEffect(() => {
@@ -64,11 +70,12 @@ const ExperienceForm = ({ values, setValues }) => {
                     values={experiences}
                     setValues={setExperiences}
                     setAllValid={setAllValid}
+                    submitted={i === 0 && submitted}
                 />
             );
         }
         setExperienceList(arr);
-    }, [numExperiences, experiences]);
+    }, [numExperiences, experiences, submitted]);
 
     const addExperience = (e) => {
         e.preventDefault();
@@ -104,17 +111,32 @@ const ExperienceForm = ({ values, setValues }) => {
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
-                <Header text="ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ" buttonFunct={goBack} />
+                <Header
+                    text="ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"
+                    buttonFunct={goToFirstPage}
+                    pageNumber={2}
+                    numPages={3}
+                />
                 {experienceList.map((item, index) => item)}
                 <button
+                    className="addButton"
                     type="button"
-                    style={{ width: 100, height: 100 }}
                     onClick={addExperience}
-                />
-                {allValid ? JSON.stringify(allValid) : 'not valid'}
-                <button className="submitBtn" type="submit">
-                    ᲨᲔᲛᲓᲔᲒᲘ
+                >
+                    მეტი გამოცდილების დამატება
                 </button>
+                <div className="btns">
+                    <button
+                        className="purpleBtn backBtn"
+                        type="button"
+                        onClick={goBack}
+                    >
+                        ᲣᲙᲐᲜ
+                    </button>
+                    <button className="purpleBtn submitBtn" type="submit">
+                        ᲨᲔᲛᲓᲔᲒᲘ
+                    </button>
+                </div>
             </form>
         </div>
     );

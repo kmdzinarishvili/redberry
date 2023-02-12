@@ -26,7 +26,7 @@ const ImageUploader = ({ setImage }) => {
             }}
         >
             <label className="label">პირადი ფოტოს ატვირთვა</label>
-            <button className="uploadBtn" onClick={handleClick}>
+            <button className="uploadBtn" type="button" onClick={handleClick}>
                 ატვირთვა{' '}
             </button>
             <input

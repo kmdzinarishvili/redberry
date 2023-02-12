@@ -1,6 +1,8 @@
 .grey {
     background-color: #f9f9f9;
     width: 1098px;
+    height: 100%;
+    min-height: 1080px;
 }
 
 .formInner {
@@ -80,25 +82,31 @@
     font-weight: 400;
     font-style: normal;
 }
-.submitBtn {
+.purpleBtn {
     width: 151px;
     height: 48px;
-
     background: #6b40e3;
     border-radius: 4px;
     border: none;
-
     font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
     color: #fff;
+}
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 114px 24px 65px 24px;
+}
+.personalNextBtn {
     margin-left: 647px;
     margin-top: 152px;
     margin-bottom: 65px;
 }
-
 .greenBorder {
     border: 1px solid #98e37e;
 }
@@ -123,8 +131,25 @@
     bottom: 15.75px;
 }
 .warn {
+    position: absolute;
     width: 21px;
     height: 18.75px;
-    margin-left: 13.5px;
+    right: -34.5px;
     margin-bottom: -8px;
+}
+.greyLine {
+    width: 798px;
+    height: 1px;
+    background-color: #c1c1c1;
+    margin-top: 50px;
+    margin-left: 24px;
+}
+.addButton {
+    padding: 14px 21px;
+    background: #62a1eb;
+    border-radius: 4px;
+    color: #fff;
+    border: none;
+    margin-top: 45px;
+    margin-left: 24px;
 }

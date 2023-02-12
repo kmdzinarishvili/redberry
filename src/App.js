@@ -10,7 +10,7 @@ import Home from './pages/Home';
 import Education from './pages/Education';
 import PersonalInfo from './pages/PersonalInfo';
 import Experience from './pages/Experience';
-import Resume from './pages/Resume';
+import Resume from './pages/ResumePage';
 
 function App() {
     return (

@@ -33,3 +33,10 @@ select:focus {
     font-style: normal;
     font-weight: 300;
 }
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue-Italic-03.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}

@@ -126,7 +126,12 @@ const PersonalForm = ({ values, setValues }) => {
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
-                <Header text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ" buttonFunct={goBack} />
+                <Header
+                    text="ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ"
+                    buttonFunct={goBack}
+                    pageNumber={1}
+                    numPages={3}
+                />
                 <div className="horizontalGroup">
                     <InputGroup
                         values={values}
@@ -187,8 +192,7 @@ const PersonalForm = ({ values, setValues }) => {
                     doValidation={!empty}
                     isValid={phoneValid}
                 />
-                {allValid ? 'all valid' : 'not valid'}
-                <button className="submitBtn" type="submit">
+                <button className="purpleBtn personalNextBtn" type="submit">
                     ᲨᲔᲛᲓᲔᲒᲘ
                 </button>
             </form>

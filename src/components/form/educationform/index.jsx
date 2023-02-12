@@ -39,7 +39,10 @@ const EducationForm = ({ values, setValues, submit }) => {
     const goBack = () => {
         navigate(-1);
     };
-
+    const goToFirstPage = () => {
+        localStorage.clear();
+        navigate('/');
+    };
     const [allValid, setAllValid] = useState({});
 
     useEffect(() => {
@@ -102,17 +105,32 @@ const EducationForm = ({ values, setValues, submit }) => {
     return (
         <div className="grey">
             <form onSubmit={handleSubmit} className="formInner" noValidate>
-                <Header text="ᲒᲐᲜᲐᲗᲚᲔᲑᲐ" buttonFunct={goBack} />
+                <Header
+                    text="ᲒᲐᲜᲐᲗᲚᲔᲑᲐ"
+                    buttonFunct={goToFirstPage}
+                    pageNumber={3}
+                    numPages={3}
+                />
                 {educationList.map((item, index) => item)}
                 <button
+                    className="addButton"
                     type="button"
-                    style={{ width: 100, height: 100 }}
                     onClick={addEducation}
-                />
-                {allValid ? JSON.stringify(allValid) : 'not valid'}
-                <button className="submitBtn" type="submit">
-                    ᲨᲔᲛᲓᲔᲒᲘ
+                >
+                    სხვა სასწავლებლის დამატება
                 </button>
+                <div className="btns">
+                    <button
+                        className="purpleBtn backBtn"
+                        type="button"
+                        onClick={goBack}
+                    >
+                        ᲣᲙᲐᲜ
+                    </button>
+                    <button className="purpleBtn submitBtn" type="submit">
+                        ᲨᲔᲛᲓᲔᲒᲘ
+                    </button>
+                </div>
             </form>
         </div>
     );

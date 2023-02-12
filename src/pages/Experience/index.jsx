@@ -24,10 +24,9 @@ const Experience = () => {
     }, [values]);
 
     return (
-        <div className={`page `}>
+        <div className={`page formPage`}>
             <ExperienceForm values={values} setValues={setValues} />
-            <Resume values={personalInfo} />
-            <div className="resume"></div>
+            <Resume personalInfo={personalInfo} experiences={values} />
         </div>
     );
 };

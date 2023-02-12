@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import InputGroup from '../inputgroup';
 
-const SingleExperience = ({ num, values, setValues, setAllValid }) => {
+const SingleExperience = ({
+    num,
+    values,
+    setValues,
+    setAllValid,
+    submitted,
+}) => {
     const [curr, setCurr] = useState(() => {
         if (values && values[num]) {
             return values[num];
@@ -113,7 +119,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                 placeholderText="თანამდებობა"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
-                doValidation={!empty}
+                doValidation={!empty || submitted}
                 isValid={positionValid}
             />
             <InputGroup
@@ -124,7 +130,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                 placeholderText="დამსაქმებელი"
                 desc="მინიმუმ 2 სიმბოლო"
                 size="large"
-                doValidation={!empty}
+                doValidation={!empty || submitted}
                 isValid={employerValid}
             />
             <div className="horizontalGroup">
@@ -135,7 +141,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                     labelText="დაწყების რიცხვი"
                     placeholderText="დაწყების რიცხვი"
                     size="small"
-                    doValidation={!empty}
+                    doValidation={!empty || submitted}
                     isValid={startDateValid}
                     type="date"
                     doCheck={false}
@@ -147,17 +153,17 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                     labelText="დამთავრების რიცხვი"
                     placeholderText="დამთავრების რიცხვი"
                     size="small"
-                    doValidation={!empty}
+                    doValidation={!empty || submitted}
                     isValid={dueDateValid}
                     type="date"
                     doCheck={false}
                 />
             </div>
             <div className="inpGroup">
-                <label className="label">ჩემ შესახებ (არასავალდებულო)</label>
+                <label className="label">აღწერა</label>
                 <textarea
                     className={`textArea ${
-                        empty
+                        empty && !submitted
                             ? ''
                             : descriptionValid
                             ? 'greenBorder'
@@ -169,6 +175,7 @@ const SingleExperience = ({ num, values, setValues, setAllValid }) => {
                     onChange={handleDescriptionChange}
                 />
             </div>
+            <div className="greyLine"></div>
         </>
     );
 };

@@ -2,6 +2,7 @@
     padding: 68px 80px;
     width: 822px;
     position: relative;
+    background-color: #fff;
 }
 .name {
     font-family: 'Helv';
@@ -45,9 +46,10 @@
     position: absolute;
     top: 48px;
     right: 75px;
+    border-radius: 50%;
 }
 
-.aboutMeTitle {
+.sectionTitle {
     margin-top: 35.55px;
     font-family: 'HelveticaNeue';
     font-style: normal;
@@ -56,14 +58,52 @@
     line-height: 22px;
     color: #f93b1d;
 }
-.aboutMeText {
-    width: 432px;
+.aboutText {
     margin-top: 15px;
     font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
-    text-transform: lowercase;
     color: #000000;
+}
+.me {
+    width: 432px;
+}
+
+.resIcon {
+    position: absolute;
+    bottom: 44px;
+    left: 78px;
+}
+
+.line {
+    width: 662px;
+    height: 1px;
+    background-color: #c8c8c8;
+    margin-top: 19px;
+}
+
+.subTitle {
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1a1a1a;
+}
+.job {
+    margin-top: 15px;
+}
+
+.date {
+    font-family: 'HelveticaNeue';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #919191;
+}
+.border {
+    border: 0.8px solid #000000;
 }

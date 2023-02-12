@@ -30,7 +30,6 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
             .then((result) => {
                 setDegrees(result);
                 if (curr['degree_id']) {
-                    console.log('inside degree_id');
                     for (let i = 0; i < result.length; i++) {
                         if (result[i]['id'] == curr['degree_id']) {
                             setDegree(result[i]['title']);
@@ -182,8 +181,10 @@ const SingleEducation = ({ num, values, setValues, setAllValid }) => {
                     placeholder="ზოგადი ინფო შენ შესახებ"
                     value={curr['description'] || ''}
                     onChange={handleDescriptionChange}
+                    style={{ height: '179px' }}
                 />
             </div>
+            <div className="greyLine"></div>
         </>
     );
 };

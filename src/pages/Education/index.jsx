@@ -30,12 +30,11 @@ const Education = () => {
 
     useEffect(() => {
         const stringifiedValues = JSON.stringify(values);
-        console.log(stringifiedValues);
         localStorage.setItem('education', stringifiedValues);
     }, [values]);
 
     const submit = async () => {
-        function dataUrlToBlob(dataUrl) {
+        const dataUrlToBlob = (dataUrl) => {
             const parts = dataUrl.split(';base64,');
             const contentType = parts[0].split(':')[1];
             const byteCharacters = atob(parts[1]);
@@ -45,7 +44,7 @@ const Education = () => {
             }
             const byteArray = new Uint8Array(byteArrays);
             return new Blob([byteArray], { type: contentType });
-        }
+        };
         const blob = dataUrlToBlob(personalInfo['image']);
         const file = new File([blob], 'myFileName', { type: 'image/png' });
 
@@ -69,13 +68,14 @@ const Education = () => {
                 }
             )
             .then(function (response) {
-                console.log(response);
+                if (response.status === 201) {
+                    console.log(response);
+                    navigate('/resume', { state: response.data });
+                }
             })
             .catch(function (error) {
                 console.log(error);
             });
-
-        navigate('/resume');
     };
     return (
         <div className={`page `}>
@@ -84,10 +84,11 @@ const Education = () => {
                 setValues={setValues}
                 submit={submit}
             />
-            <Resume values={personalInfo} />
-            {experiences.map((item, index) => {
-                return <p key={'experience' + index}>{JSON.stringify(item)}</p>;
-            })}
+            <Resume
+                personalInfo={personalInfo}
+                experiences={experiences}
+                educations={values}
+            />
         </div>
     );
 };

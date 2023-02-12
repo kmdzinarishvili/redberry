@@ -43,28 +43,28 @@ const SingleExperience = ({
         }
     }, [curr]);
 
-    const validate = (curr) => {
-        if (curr && curr['position'] && curr['position'].length >= 2) {
+    const validate = (obj) => {
+        if (obj && obj['position'] && obj['position'].length >= 2) {
             setPositionValid(true);
         } else {
             setPositionValid(false);
         }
-        if (curr && curr['employer'] && curr['employer'].length >= 2) {
+        if (obj && obj['employer'] && obj['employer'].length >= 2) {
             setEmployerValid(true);
         } else {
             setEmployerValid(false);
         }
-        if (curr['start_date']) {
+        if (obj['start_date']) {
             setStartDateValid(true);
         } else {
             setStartDateValid(false);
         }
-        if (curr['due_date']) {
+        if (obj['due_date']) {
             setDueDateValid(true);
         } else {
             setDueDateValid(false);
         }
-        if (curr && curr['description'] && curr['description'].length >= 2) {
+        if (obj && obj['description'] && obj['description'].length >= 2) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);

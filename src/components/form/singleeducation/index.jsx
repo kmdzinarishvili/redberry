@@ -48,30 +48,30 @@ const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
         }
     }, [curr]);
 
-    const validate = (curr) => {
-        if (curr && curr['institute'] && curr['institute'].length >= 2) {
+    const validate = (obj, deg) => {
+        if (obj && obj['institute'] && obj['institute'].length >= 2) {
             setInstituteValid(true);
         } else {
             setInstituteValid(false);
         }
-        if (degree) {
+        if (deg) {
             setDegreeValid(true);
         } else {
             setDegreeValid(false);
         }
-        if (curr['due_date']) {
+        if (obj['due_date']) {
             setDueDateValid(true);
         } else {
             setDueDateValid(false);
         }
-        if (curr && curr['description']) {
+        if (obj && obj['description']) {
             setDescriptionValid(true);
         } else {
             setDescriptionValid(false);
         }
     };
     useEffect(() => {
-        validate(curr);
+        validate(curr, deg);
     }, [curr]);
 
     useEffect(() => {

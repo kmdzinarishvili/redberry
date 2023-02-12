@@ -63,37 +63,37 @@ const PersonalForm = ({ values, setValues }) => {
     const [phoneValid, setPhoneValid] = useState(false);
     const [allValid, setAllValid] = useState(false);
 
-    const validate = (values) => {
-        if (values['image']) {
+    const validate = () => {
+        if (obj['image']) {
             setImageValid(true);
         } else {
             setImageValid(false);
         }
         if (
-            values['firstName'] &&
-            values['firstName'].length >= 2 &&
-            isGeorgianString(values['firstName'])
+            obj['firstName'] &&
+            obj['firstName'].length >= 2 &&
+            isGeorgianString(obj['firstName'])
         ) {
             setFirstNameValid(true);
         } else {
             setFirstNameValid(false);
         }
         if (
-            values['lastName'] &&
-            values['lastName'].length >= 2 &&
-            isGeorgianString(values['lastName'])
+            obj['lastName'] &&
+            obj['lastName'].length >= 2 &&
+            isGeorgianString(obj['lastName'])
         ) {
             setLastNameValid(true);
         } else {
             setLastNameValid(false);
         }
-        if (values['email'] && values['email'].endsWith('@redberry.ge')) {
+        if (obj['email'] && obj['email'].endsWith('@redberry.ge')) {
             setEmailValid(true);
         } else {
             setEmailValid(false);
         }
         if (
-            values['phone'] &&
+            obj['phone'] &&
             /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/.test(values['phone'])
         ) {
             setPhoneValid(true);

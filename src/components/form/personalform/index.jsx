@@ -63,7 +63,7 @@ const PersonalForm = ({ values, setValues }) => {
     const [phoneValid, setPhoneValid] = useState(false);
     const [allValid, setAllValid] = useState(false);
 
-    const validate = () => {
+    const validate = (obj) => {
         if (obj['image']) {
             setImageValid(true);
         } else {

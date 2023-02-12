@@ -71,7 +71,7 @@ const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
         }
     };
     useEffect(() => {
-        validate(curr, deg);
+        validate(curr, degree);
     }, [curr]);
 
     useEffect(() => {

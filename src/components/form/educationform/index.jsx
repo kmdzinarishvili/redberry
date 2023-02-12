@@ -83,7 +83,7 @@ const EducationForm = ({ values, setValues, submit }) => {
             );
         }
         setEducationList(arr);
-    }, [numEducations, educations]);
+    }, [numEducations, educations, degrees]);
 
     const addEducation = (e) => {
         e.preventDefault();

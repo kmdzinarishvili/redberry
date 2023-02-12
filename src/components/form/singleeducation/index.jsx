@@ -32,7 +32,7 @@ const SingleEducation = ({ num, values, setValues, setAllValid, degrees }) => {
                 }
             }
         }
-    }, [degrees]);
+    }, [degrees, curr]);
     function isEmpty(obj) {
         for (const key in obj) {
             if (obj.hasOwnProperty(key) && obj[key] !== '') {
